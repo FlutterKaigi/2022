@@ -17,7 +17,7 @@ final kSocialLinks = <Map<String, String>>[
   {
     'name': 'medium_logo',
     'title': 'Medium',
-    'url': 'https://medium.com/flutterKaigi',
+    'url': 'https://medium.com/flutterkaigi',
   },
 ];
 
