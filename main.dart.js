@@ -74747,7 +74747,7 @@ $.anb=null
 $.ana=null
 $.Ph=A.D(t.N,t._8)
 $.aii=function(){var s=t.N
-return A.a([A.aw(["name","twitter_logo","title","Twitter","url","https://twitter.com/FlutterKaigi"],s,s),A.aw(["name","github_logo","title","Github","url","https://github.com/FlutterKaigi"],s,s),A.aw(["name","discord_logo","title","Discord","url","https://discord.gg/Nr7H8JTJSF"],s,s),A.aw(["name","medium_logo","title","Medium","url","https://medium.com/flutterKaigi"],s,s)],t.SN)}()
+return A.a([A.aw(["name","twitter_logo","title","Twitter","url","https://twitter.com/FlutterKaigi"],s,s),A.aw(["name","github_logo","title","Github","url","https://github.com/FlutterKaigi"],s,s),A.aw(["name","discord_logo","title","Discord","url","https://discord.gg/Nr7H8JTJSF"],s,s),A.aw(["name","medium_logo","title","Medium","url","https://medium.com/flutterkaigi"],s,s)],t.SN)}()
 $.arV=function(){var s=t.N
 return A.a([A.aw(["name","Flutter.dev","url","https://flutter.dev/"],s,s),A.aw(["name","FlutterKaigi 2021","url","https://flutterkaigi.jp/2021"],s,s)],t.SN)}()
 $.alw=function(){var s=t.N
