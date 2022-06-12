@@ -1,6 +1,6 @@
 import 'package:confwebsite2022/data/staff.dart';
 import 'package:confwebsite2022/gen/assets.gen.dart';
-import 'package:confwebsite2022/responsive_layout_builder.dart';
+import 'package:confwebsite2022/widgets/divider_with_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
@@ -19,37 +19,7 @@ class StaffSection extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 16),
       child: Column(
         children: [
-          Container(
-            alignment: Alignment.center,
-            child: Padding(
-              padding: const EdgeInsets.all(4),
-              child: Tooltip(
-                message: appLocalizations.executive_committee,
-                child: Text(
-                  appLocalizations.executive_committee,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 40,
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Container(
-            alignment: Alignment.center,
-            child: Padding(
-              padding: const EdgeInsets.all(4),
-              child: Tooltip(
-                message: appLocalizations.alphabeticalOrder,
-                child: Text(
-                  appLocalizations.alphabeticalOrder,
-                  style: const TextStyle(
-                    fontSize: 15,
-                  ),
-                ),
-              ),
-            ),
-          ),
+          DividerWithTitle(text: appLocalizations.executive_committee),
           Container(
             alignment: Alignment.center,
             child: SizedBox(
