@@ -1,7 +1,6 @@
 import 'package:confwebsite2022/data/link.dart';
 import 'package:confwebsite2022/gen/assets.gen.dart';
 import 'package:confwebsite2022/responsive_layout_builder.dart';
-import 'package:confwebsite2022/router/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/flutter_svg.dart';
