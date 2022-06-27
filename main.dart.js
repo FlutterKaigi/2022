@@ -39933,7 +39933,7 @@ F(a,b){A.f7(b,B.dD,t.wr).toString
 return new A.ty(new A.a__(this),null)}}
 A.a__.prototype={
 $3(a,b,c){var s=null,r=b===B.hv?0.6:1,q=t.p
-return A.au4(s,!0,A.a([new A.Pl(A.dw(A.a([A.bS(s,A.dw(A.a([A.u0("assets/flutterkaigi_logo.svg",320*r),A.a2q(B.R,A.cs("FlutterKaigi",s,s,B.a5M.LZ(r),s,s),B.m,B.dL),new A.m9(32*r,s),A.a2q(B.R,A.cs("@ONLINE / Autumn 2022",s,s,B.a5N.LZ(r),s,s),B.m,B.dL),B.iB,B.Zd,B.iA,B.a0E],q),B.M,B.N,B.J),B.m,s,s,s,s,s,s,s,B.oV,s,s,s),B.iB,B.a0L,B.a0F,new A.K1(b,s)],q),B.M,B.N,B.J),!1,s)],q))},
+return A.au4(s,!0,A.a([new A.Pl(A.dw(A.a([A.bS(s,A.dw(A.a([A.u0("assets/flutterkaigi_logo.svg",320*r),A.a2q(B.R,A.cs("FlutterKaigi",s,s,B.a5M.LZ(r),s,s),B.m,B.dL),new A.m9(32*r,s),A.a2q(B.R,A.cs("@ONLINE / November 16-18, 2022",s,s,B.a5N.LZ(r),s,s),B.m,B.dL),B.iB,B.Zd,B.iA,B.a0E],q),B.M,B.N,B.J),B.m,s,s,s,s,s,s,s,B.oV,s,s,s),B.iB,B.a0L,B.a0F,new A.K1(b,s)],q),B.M,B.N,B.J),!1,s)],q))},
 $C:"$3",
 $R:3,
 $S:275}

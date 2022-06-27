@@ -37,7 +37,7 @@ const RESOURCES = {
 "manifest.json": "e21a8991a312b40b1643de826961b249",
 "favicon.png": "6ca60969d955557b7886c622423ef486",
 "flutter.js": "eb2682e33f25cd8f1fc59011497c35f8",
-"main.dart.js": "002d47cb9f2408cfebcb392adab60811",
+"main.dart.js": "1eb6a1ef50b8bb5246d3e5c8ffb61283",
 "canvaskit/profiling/canvaskit.wasm": "95e736ab31147d1b2c7b25f11d4c32cd",
 "canvaskit/profiling/canvaskit.js": "ae2949af4efc61d28a4a80fffa1db900",
 "canvaskit/canvaskit.wasm": "4b83d89d9fecbea8ca46f2f760c5a9ba",
