@@ -18,7 +18,7 @@ class Logo {
 final logos = ValueNotifier<List<Logo>>([]);
 
 class BackgroundCanvas extends StatefulWidget {
-  const BackgroundCanvas({Key? key, required this.size}) : super(key: key);
+  const BackgroundCanvas({super.key, required this.size});
 
   final Size size;
 
@@ -73,7 +73,7 @@ class _BackgroundCanvasState extends State<BackgroundCanvas>
 }
 
 class _Background extends StatelessWidget {
-  const _Background({Key? key, required this.logos}) : super(key: key);
+  const _Background({super.key, required this.logos});
 
   final List<Logo> logos;
 

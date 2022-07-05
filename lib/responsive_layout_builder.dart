@@ -21,10 +21,7 @@ typedef ResponsiveLayoutWidgetBuilder = Widget Function(
 
 /// Builds a widget tree that can depend on the parent widget's width
 class ResponsiveLayoutBuilder extends StatelessWidget {
-  const ResponsiveLayoutBuilder({
-    required this.builder,
-    Key? key,
-  }) : super(key: key);
+  const ResponsiveLayoutBuilder({super.key, required this.builder});
 
   /// Builds the widgets below this widget given this widget's layout width.
   final ResponsiveLayoutWidgetBuilder builder;

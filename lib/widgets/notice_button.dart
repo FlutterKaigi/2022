@@ -3,7 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class NoticeButton extends StatelessWidget {
-  const NoticeButton({Key? key}) : super(key: key);
+  const NoticeButton({super.key});
 
   @override
   Widget build(BuildContext context) {

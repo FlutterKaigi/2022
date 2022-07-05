@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class DividerWithTitle extends StatelessWidget {
-  const DividerWithTitle({Key? key, required this.text}) : super(key: key);
+  const DividerWithTitle({super.key, required this.text});
 
   final String text;
 

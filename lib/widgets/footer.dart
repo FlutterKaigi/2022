@@ -9,7 +9,7 @@ import 'package:styled_text/styled_text.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Footer extends StatelessWidget {
-  Footer({Key? key, required this.layout}) : super(key: key);
+  Footer({super.key, required this.layout});
 
   ResponsiveLayout layout;
 
@@ -294,12 +294,12 @@ class Footer extends StatelessWidget {
 
 class _FooterButton extends StatelessWidget {
   const _FooterButton({
-    Key? key,
+    super.key,
     required this.message,
     this.text,
     this.icon,
     required this.onPressed,
-  }) : super(key: key);
+  });
 
   final String message;
   final String? text;
@@ -347,13 +347,13 @@ class _FooterButton extends StatelessWidget {
 
 class CustomDivider extends StatelessWidget {
   const CustomDivider({
-    Key? key,
+    super.key,
     this.height = 16,
     this.thickness = 1,
     this.indent = 0,
     this.endIndent = 0,
     required this.gradient,
-  }) : super(key: key);
+  });
 
   final double height;
   final double thickness;

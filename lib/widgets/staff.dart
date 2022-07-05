@@ -8,7 +8,7 @@ import 'package:transparent_image/transparent_image.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class StaffSection extends StatelessWidget {
-  const StaffSection({Key? key}) : super(key: key);
+  const StaffSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -52,11 +52,11 @@ class StaffSection extends StatelessWidget {
 
 class StaffItem extends StatelessWidget {
   const StaffItem({
-    Key? key,
+    super.key,
     required this.name,
     required this.photo,
     required this.url,
-  }) : super(key: key);
+  });
   final String name;
   final String photo;
   final String url;

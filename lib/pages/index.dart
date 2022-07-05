@@ -14,7 +14,7 @@ import 'package:url_launcher/url_launcher.dart';
 enum MenuItem { event, tweet }
 
 class TopPage extends StatelessWidget {
-  const TopPage({Key? key}) : super(key: key);
+  const TopPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -148,7 +148,7 @@ class TopPage extends StatelessWidget {
 }
 
 class Body extends StatelessWidget {
-  const Body({Key? key}) : super(key: key);
+  const Body({super.key});
 
   TextStyle get titleTextStyle => const TextStyle(fontSize: 64);
 
