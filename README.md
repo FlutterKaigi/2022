@@ -13,7 +13,9 @@ For Japanese, please see [CONTRIBUTING.ja.md](./CONTRIBUTING.ja.md).
 ### Tech Stacks
 
 - [Flutter](https://flutter.dev/)
-- [Firebase Hosting](https://firebase.google.com/docs/hosting)
+- [Flutter Web](https://docs.flutter.dev/deployment/web)
+- [Github Pages](https://docs.github.com/ja/pages/getting-started-with-github-pages/about-github-pages)
+- [Codemagic Static Pages](https://docs.codemagic.io/flutter-publishing/publishing-to-codemagic-static-pages/)
 
 ## Thanks
 
