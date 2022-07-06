@@ -6,12 +6,6 @@ import 'package:flutter/widgets.dart';
 
 class $AssetsMusicGen {
   const $AssetsMusicGen();
-
-  /// File path: assets/music/bensound-dreams.mp3
-  String get bensoundDreams => 'assets/music/bensound-dreams.mp3';
-
-  /// File path: assets/music/bensound-thelounge.mp3
-  String get bensoundThelounge => 'assets/music/bensound-thelounge.mp3';
 }
 
 class $AssetsPhotoGen {
