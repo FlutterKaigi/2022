@@ -21,7 +21,7 @@ jobs:
 
       - name: Transpile
         run: |
-          flutter build web --web-renderer html
+          flutter build web --web-renderer html --base-href "/2022/"
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
