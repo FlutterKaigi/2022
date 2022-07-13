@@ -1,8 +1,10 @@
 import 'package:confwebsite2022/gen/assets.gen.dart';
 import 'package:confwebsite2022/responsive_layout_builder.dart';
 import 'package:confwebsite2022/widgets/background.dart';
+import 'package:confwebsite2022/widgets/custom_button.dart';
+import 'package:confwebsite2022/widgets/custom_notice_button.dart';
+import 'package:confwebsite2022/widgets/features.dart';
 import 'package:confwebsite2022/widgets/footer.dart';
-import 'package:confwebsite2022/widgets/notice_button.dart';
 import 'package:confwebsite2022/widgets/social.dart';
 import 'package:confwebsite2022/widgets/staff.dart';
 import 'package:flutter/material.dart';
@@ -198,7 +200,57 @@ class Body extends StatelessWidget {
                         ),
                       ),
                       const Gap(32),
-                      const NoticeButton(),
+                      CustomNoticeButton(
+                        isShow: initialLaunched,
+                        title: appLocalizations.checkLatestNews,
+                        message: appLocalizations.tweet,
+                        onPress: () async {
+                          await launch(
+                            'https://twitter.com/FlutterKaigi',
+                            webOnlyWindowName: '_blank',
+                          );
+                        },
+                      ),
+                      const Gap(16),
+                      Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            CustomButton(
+                              isShow: !initialLaunched,
+                              title: appLocalizations.session,
+                              message: startSession
+                                  ? appLocalizations.submitProposal
+                                  : appLocalizations.waitFor,
+                              onPress: startSession
+                                  ? () async {
+                                      await launch(
+                                        'https://fortee.jp/flutterkaigi-2022/speaker/proposal/cfp',
+                                        webOnlyWindowName: '_blank',
+                                      );
+                                    }
+                                  : null,
+                            ),
+                            CustomButton(
+                              isShow: !initialLaunched,
+                              title: appLocalizations.sponsor,
+                              message: announceSponsor
+                                  ? appLocalizations.becomeSponsor
+                                  : appLocalizations.waitFor,
+                              onPress: announceSponsor
+                                  ? () async {
+                                      await launch(
+                                        startSponsor
+                                            ? 'https://fortee.jp/flutterkaigi-2022/sponsor/form'
+                                            : 'https://docs.google.com/presentation/d/1HEwDIi6rxzKUnZmu7EKkwR04bvTQnSjWjpw3ldunczM/edit?usp=sharing',
+                                        webOnlyWindowName: '_blank',
+                                      );
+                                    }
+                                  : null,
+                            ),
+                          ],
+                        ),
+                      ),
                       const Gap(16),
                       const Social(),
                     ],

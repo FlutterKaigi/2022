@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:url_launcher/url_launcher.dart';
 
-class NoticeButton extends StatelessWidget {
-  const NoticeButton({super.key});
+class CustomNoticeButton extends StatelessWidget {
+  const CustomNoticeButton(
+      {super.key,
+      required this.isShow,
+      required this.title,
+      required this.message,
+      required this.onPress});
+
+  final bool isShow;
+  final String title;
+  final String message;
+  final Function() onPress;
 
   @override
   Widget build(BuildContext context) {
-    final appLocalizations = AppLocalizations.of(context)!;
+    if (!isShow) return const SizedBox.shrink();
 
     return ClipRRect(
       borderRadius: BorderRadius.circular(48.0),
@@ -18,18 +26,13 @@ class NoticeButton extends StatelessWidget {
           ),
         ),
         child: Tooltip(
-          message: appLocalizations.tweet,
+          message: message,
           child: TextButton(
-            onPressed: () async {
-              await launch(
-                'https://twitter.com/FlutterKaigi',
-                webOnlyWindowName: '_blank',
-              );
-            },
+            onPressed: onPress,
             child: Padding(
               padding: const EdgeInsets.all(20),
               child: Text(
-                appLocalizations.checkLatestNews,
+                title,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: Colors.white,
