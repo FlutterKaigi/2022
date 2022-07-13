@@ -142,14 +142,14 @@ class TopPage extends StatelessWidget {
             }
           },
           itemBuilder: (BuildContext context) {
-            return const [
-              PopupMenuItem(
+            return [
+              const PopupMenuItem(
                 child: Text("FlutterKaigi 2021"),
                 value: '/flutterkaigi2021',
               ),
               PopupMenuItem(
-                child: Text("Other meetups"),
-                value: '/meetups',
+                child: Text(appLocalizations.other_event),
+                value: '/other',
               ),
             ];
           },

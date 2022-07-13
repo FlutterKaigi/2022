@@ -24,5 +24,6 @@
     "copyright" : "© 2021-2022 FlutterKaigi Executive Committee",
     "licenses": "Licenses",
     "disclaimer": "Flutter and the related logo are trademarks of Google LLC. FlutterKaigi is not affiliated with or otherwise sponsored by Google LLC.",
-    "trademark" : "The \"Flutter\" name and the Flutter logo <FlutterLogo/> (the \"Flutter Marks\") are trademarks owned by Google."
+    "trademark" : "The \"Flutter\" name and the Flutter logo <FlutterLogo/> (the \"Flutter Marks\") are trademarks owned by Google.",
+    "other_event": "その他のイベント"
 }
