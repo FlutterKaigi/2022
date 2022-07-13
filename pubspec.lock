@@ -620,7 +620,7 @@ packages:
       name: styled_text
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.0.0+1"
+    version: "5.1.0"
   term_glyph:
     dependency: transitive
     description:
@@ -652,9 +652,11 @@ packages:
   transparent_image:
     dependency: "direct main"
     description:
-      name: transparent_image
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "."
+      ref: "bugfix/bitmap-test"
+      resolved-ref: "26a3a84b9a7efb2c42ca9dee7c7a2eba2546d662"
+      url: "https://github.com/jiyuujin/transparent_image"
+    source: git
     version: "2.0.0"
   typed_data:
     dependency: transitive

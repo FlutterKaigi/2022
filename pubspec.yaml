@@ -24,7 +24,10 @@ dependencies:
   hooks_riverpod: ^1.0.4
   intl: ^0.17.0
   styled_text: ^5.0.0+1
-  transparent_image: ^2.0.0
+  transparent_image:
+    git:
+      url: https://github.com/jiyuujin/transparent_image
+      ref: bugfix/bitmap-test
 
 dev_dependencies:
   build_runner:
