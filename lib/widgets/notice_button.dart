@@ -9,33 +9,33 @@ class NoticeButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final appLocalizations = AppLocalizations.of(context)!;
 
-    return Container(
-      margin: const EdgeInsets.all(8),
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          colors: [Colors.blue, Colors.green],
-        ),
-      ),
-      child: Tooltip(
-        message: appLocalizations.tweet,
-        child: ElevatedButton(
-          onPressed: () async {
-            await launch(
-              'https://twitter.com/FlutterKaigi',
-              webOnlyWindowName: '_blank',
-            );
-          },
-          style: ElevatedButton.styleFrom(
-            shape: const StadiumBorder(),
-            padding: const EdgeInsets.all(24),
-            primary: Colors.transparent,
-            onPrimary: Colors.black87,
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(48.0),
+      child: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.blue, Colors.green],
           ),
-          child: Text(
-            appLocalizations.checkLatestNews,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 20,
+        ),
+        child: Tooltip(
+          message: appLocalizations.tweet,
+          child: TextButton(
+            onPressed: () async {
+              await launch(
+                'https://twitter.com/FlutterKaigi',
+                webOnlyWindowName: '_blank',
+              );
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Text(
+                appLocalizations.checkLatestNews,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                ),
+              ),
             ),
           ),
         ),
