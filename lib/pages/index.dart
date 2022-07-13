@@ -221,7 +221,7 @@ class Body extends StatelessWidget {
                               title: appLocalizations.session,
                               message: startSession
                                   ? appLocalizations.submitProposal
-                                  : appLocalizations.waitForSubmitProposal,
+                                  : appLocalizations.waitFor,
                               onPress: startSession
                                   ? () async {
                                       await launch(
