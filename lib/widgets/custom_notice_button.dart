@@ -17,28 +17,28 @@ class CustomNoticeButton extends StatelessWidget {
   Widget build(BuildContext context) {
     if (!isShow) return const SizedBox.shrink();
 
-    return Container(
-      margin: const EdgeInsets.all(8),
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          colors: [Colors.blue, Colors.green],
-        ),
-      ),
-      child: Tooltip(
-        message: message,
-        child: ElevatedButton(
-          onPressed: onPress,
-          style: ElevatedButton.styleFrom(
-            shape: const StadiumBorder(),
-            padding: const EdgeInsets.all(24),
-            primary: Colors.transparent,
-            onPrimary: Colors.black87,
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(48.0),
+      child: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.blue, Colors.green],
           ),
-          child: Text(
-            title,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 20,
+        ),
+        child: Tooltip(
+          message: message,
+          child: TextButton(
+            onPressed: onPress,
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Text(
+                title,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                ),
+              ),
             ),
           ),
         ),
