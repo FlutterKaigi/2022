@@ -144,11 +144,31 @@ class TopPage extends StatelessWidget {
           itemBuilder: (BuildContext context) {
             return [
               const PopupMenuItem(
-                child: Text("FlutterKaigi 2021"),
+                child: Text(
+                  'FlutterKaigi 2021',
+                  style: TextStyle(
+                    fontWeight: FontWeight.normal,
+                    fontSize: 18,
+                  ),
+                  strutStyle: StrutStyle(
+                    fontSize: 18,
+                    height: 1.3,
+                  ),
+                ),
                 value: '/flutterkaigi2021',
               ),
               PopupMenuItem(
-                child: Text(appLocalizations.other_event),
+                child: Text(
+                  appLocalizations.other_event,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.normal,
+                    fontSize: 18,
+                  ),
+                  strutStyle: const StrutStyle(
+                    fontSize: 18,
+                    height: 1.3,
+                  ),
+                ),
                 value: '/other',
               ),
             ];
