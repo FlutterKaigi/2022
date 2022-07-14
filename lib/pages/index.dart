@@ -214,6 +214,7 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ResponsiveLayoutBuilder(builder: (context, layout, width) {
+      final appLocalizations = AppLocalizations.of(context)!;
       final sizeFactor = (layout == ResponsiveLayout.slim) ? 0.6 : 1.0;
 
       return CustomScrollView(
