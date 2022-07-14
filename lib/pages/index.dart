@@ -113,17 +113,68 @@ class TopPage extends StatelessWidget {
     return [
       Container(
         margin: const EdgeInsets.all(8),
-        child: Tooltip(
-          message: 'https://flutter-jp.connpass.com/',
-          child: TextButton(
-            onPressed: () async {
-              await launch(
-                'https://flutter-jp.connpass.com/',
-                webOnlyWindowName: '_blank',
-              );
-            },
-            child: Text(appLocalizations.event),
+        child: PopupMenuButton(
+          offset: const Offset(0, 40),
+          child: TextButton.icon(
+            label: Text(appLocalizations.event),
+            icon: Icon(
+              Icons.calendar_month,
+              color: Theme.of(context).primaryColor,
+            ),
+            onPressed: null,
           ),
+          onSelected: (value) async {
+            switch (value) {
+              case '/flutterkaigi2021':
+                {
+                  await launch(
+                    'https://flutterkaigi.jp/2021',
+                    webOnlyWindowName: '_blank',
+                  );
+                  break;
+                }
+              default:
+                {
+                  await launch(
+                    'https://flutter-jp.connpass.com/',
+                    webOnlyWindowName: '_blank',
+                  );
+                  break;
+                }
+            }
+          },
+          itemBuilder: (BuildContext context) {
+            return [
+              const PopupMenuItem(
+                child: Text(
+                  'FlutterKaigi 2021',
+                  style: TextStyle(
+                    fontWeight: FontWeight.normal,
+                    fontSize: 18,
+                  ),
+                  strutStyle: StrutStyle(
+                    fontSize: 18,
+                    height: 1.3,
+                  ),
+                ),
+                value: '/flutterkaigi2021',
+              ),
+              PopupMenuItem(
+                child: Text(
+                  appLocalizations.other_event,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.normal,
+                    fontSize: 18,
+                  ),
+                  strutStyle: const StrutStyle(
+                    fontSize: 18,
+                    height: 1.3,
+                  ),
+                ),
+                value: '/other',
+              ),
+            ];
+          },
         ),
       ),
       Container(
@@ -162,8 +213,6 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appLocalizations = AppLocalizations.of(context)!;
-
     return ResponsiveLayoutBuilder(builder: (context, layout, width) {
       final sizeFactor = (layout == ResponsiveLayout.slim) ? 0.6 : 1.0;
 
