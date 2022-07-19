@@ -2,7 +2,6 @@ import 'package:confwebsite2022/gen/assets.gen.dart';
 import 'package:confwebsite2022/responsive_layout_builder.dart';
 import 'package:confwebsite2022/widgets/background.dart';
 import 'package:confwebsite2022/widgets/custom_button.dart';
-import 'package:confwebsite2022/widgets/custom_notice_button.dart';
 import 'package:confwebsite2022/widgets/features.dart';
 import 'package:confwebsite2022/widgets/footer.dart';
 import 'package:confwebsite2022/widgets/social.dart';
@@ -250,8 +249,11 @@ class Body extends StatelessWidget {
                         ),
                       ),
                       const Gap(32),
-                      CustomNoticeButton(
+                      CustomButton(
                         isShow: initialLaunched,
+                        colors: initialLaunched
+                            ? const [Colors.blue, Colors.green]
+                            : null,
                         title: appLocalizations.checkLatestNews,
                         message: appLocalizations.tweet,
                         onPress: () async {
@@ -268,6 +270,9 @@ class Body extends StatelessWidget {
                           children: [
                             CustomButton(
                               isShow: !initialLaunched,
+                              colors: startSession
+                                  ? const [Colors.green, Colors.teal]
+                                  : null,
                               title: appLocalizations.session,
                               message: startSession
                                   ? appLocalizations.submitProposal
@@ -283,6 +288,9 @@ class Body extends StatelessWidget {
                             ),
                             CustomButton(
                               isShow: !initialLaunched,
+                              colors: announceSponsor
+                                  ? const [Colors.blue, Colors.indigo]
+                                  : null,
                               title: appLocalizations.sponsor,
                               message: announceSponsor
                                   ? appLocalizations.becomeSponsor
