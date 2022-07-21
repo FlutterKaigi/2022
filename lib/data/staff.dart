@@ -82,4 +82,10 @@ final kStaffList = [
         'https://pbs.twimg.com/profile_images/1017186161024856065/zI2avEVC_400x400.jpg',
     'url': 'https://twitter.com/AkiraTameto',
   },
+  {
+    'name': 'AkiraTsuboi',
+    'photo':
+        'https://pbs.twimg.com/profile_images/1301542495428337670/B0QvQ2rC_400x400.jpg',
+    'url': 'https://twitter.com/akira_tsuboi',
+  },
 ];
