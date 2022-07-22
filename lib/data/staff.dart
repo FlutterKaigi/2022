@@ -142,10 +142,4 @@ final kStaffList = [
     'https://pbs.twimg.com/profile_images/1546990476091281409/Ma0BdiNm_400x400.jpg',
     'url': 'https://twitter.com/kazuhitonakayam',
   },
-  {
-    'name': 'Ryo24',
-    'photo':
-    'https://pbs.twimg.com/profile_images/1332174255157481472/ZzJJT2zD_400x400.jpg',
-    'url': 'https://twitter.com/r0227n_',
-  },
 ];
