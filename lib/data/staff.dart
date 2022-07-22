@@ -95,7 +95,7 @@ final kStaffList = [
     'url': 'https://twitter.com/Krgm4D',
   },
   {
-    'name': 'koheimachida',
+    'name': 'machi',
     'photo':
     'https://pbs.twimg.com/profile_images/1400716314864357377/2YRCNyts_400x400.jpg',
     'url': 'https://twitter.com/kmachida12345',
@@ -103,7 +103,7 @@ final kStaffList = [
   {
     'name': 'techkeito',
     'photo':
-    'https://pbs.twimg.com/profile_images/1400716314864357377/2YRCNyts_400x400.jpg',
+    'https://pbs.twimg.com/profile_images/1409543044467093507/qPwOdAG2_400x400.jpg',
     'url': 'https://twitter.com/techkeito',
   },
   {
