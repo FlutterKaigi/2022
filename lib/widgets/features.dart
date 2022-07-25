@@ -2,7 +2,7 @@
 const initialLaunched = false;
 
 /// セッション公募の開始
-const startSession = false;
+const startSession = true;
 
 /// スポンサー公募の周知
 const announceSponsor = true;
