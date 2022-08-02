@@ -1,11 +1,5 @@
 final kStaffList = [
   {
-    'name': '大西',
-    'photo':
-        'https://pbs.twimg.com/profile_images/1057295751821160448/OZCsixgP_400x400.jpg',
-    'url': 'https://twitter.com/camdekka',
-  },
-  {
     'name': 'yagitatsu',
     'photo':
         'https://pbs.twimg.com/profile_images/1435550945157337091/GNxormVJ_400x400.jpg',
