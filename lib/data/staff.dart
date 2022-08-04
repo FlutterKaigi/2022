@@ -85,55 +85,55 @@ final kStaffList = [
   {
     'name': 'Kurogoma4D',
     'photo':
-    'https://pbs.twimg.com/profile_images/1289002876430213120/G2A564li_400x400.jpg',
+        'https://pbs.twimg.com/profile_images/1289002876430213120/G2A564li_400x400.jpg',
     'url': 'https://twitter.com/Krgm4D',
   },
   {
     'name': 'machi',
     'photo':
-    'https://pbs.twimg.com/profile_images/1400716314864357377/2YRCNyts_400x400.jpg',
+        'https://pbs.twimg.com/profile_images/1400716314864357377/2YRCNyts_400x400.jpg',
     'url': 'https://twitter.com/kmachida12345',
   },
   {
     'name': 'techkeito',
     'photo':
-    'https://pbs.twimg.com/profile_images/1409543044467093507/qPwOdAG2_400x400.jpg',
+        'https://pbs.twimg.com/profile_images/1409543044467093507/qPwOdAG2_400x400.jpg',
     'url': 'https://twitter.com/techkeito',
   },
   {
     'name': 'Takuma Kato',
     'photo':
-    'https://pbs.twimg.com/profile_images/1177612141760667648/3co12wQD_400x400.jpg',
+        'https://pbs.twimg.com/profile_images/1177612141760667648/3co12wQD_400x400.jpg',
     'url': 'https://twitter.com/table_house',
   },
   {
     'name': 'ashdik',
     'photo':
-    'https://pbs.twimg.com/profile_images/1261189066822828032/9FHFE3Mr_400x400.jpg',
+        'https://pbs.twimg.com/profile_images/1261189066822828032/9FHFE3Mr_400x400.jpg',
     'url': 'https://twitter.com/daiki1003',
   },
   {
     'name': 'heavenOSK',
     'photo':
-    'https://pbs.twimg.com/profile_images/1227984665165742082/UiAeVhmX_400x400.jpg',
+        'https://pbs.twimg.com/profile_images/1227984665165742082/UiAeVhmX_400x400.jpg',
     'url': 'https://twitter.com/heavenosk',
   },
   {
     'name': 'Yuki Sakai',
     'photo':
-    'https://pbs.twimg.com/profile_images/1480887241237200899/Lz28HNr4_400x400.jpg',
+        'https://pbs.twimg.com/profile_images/1480887241237200899/Lz28HNr4_400x400.jpg',
     'url': 'https://twitter.com/yu12k25i',
   },
   {
     'name': 'NuumA',
     'photo':
-    'https://pbs.twimg.com/profile_images/1297474423310544897/iXJJY8z7_400x400.jpg',
+        'https://pbs.twimg.com/profile_images/1297474423310544897/iXJJY8z7_400x400.jpg',
     'url': 'https://twitter.com/numatch_jx',
   },
   {
     'name': 'Kazuhito Nakayama',
     'photo':
-    'https://pbs.twimg.com/profile_images/1546990476091281409/Ma0BdiNm_400x400.jpg',
+        'https://pbs.twimg.com/profile_images/1546990476091281409/Ma0BdiNm_400x400.jpg',
     'url': 'https://twitter.com/kazuhitonakayam',
   },
 ];
