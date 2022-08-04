@@ -12,7 +12,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-enum MenuItem { event, tweet }
+enum MenuItem { pastEvent, event, tweet }
 
 class TopPage extends StatelessWidget {
   const TopPage({super.key});
@@ -59,6 +59,9 @@ class TopPage extends StatelessWidget {
         onSelected: (MenuItem result) async {
           String urlString;
           switch (result) {
+            case MenuItem.pastEvent:
+              urlString = 'https://flutterkaigi.jp/2021';
+              break;
             case MenuItem.event:
               urlString = 'https://flutter-jp.connpass.com/';
               break;
@@ -73,9 +76,13 @@ class TopPage extends StatelessWidget {
           );
         },
         itemBuilder: (BuildContext context) => <PopupMenuEntry<MenuItem>>[
+          const PopupMenuItem<MenuItem>(
+            value: MenuItem.pastEvent,
+            child: Text('FlutterKaigi 2021'),
+          ),
           PopupMenuItem<MenuItem>(
             value: MenuItem.event,
-            child: Text(appLocalizations.event),
+            child: Text(appLocalizations.other_event),
           ),
           PopupMenuItem<MenuItem>(
             value: MenuItem.tweet,
@@ -112,7 +119,7 @@ class TopPage extends StatelessWidget {
     return [
       Container(
         margin: const EdgeInsets.all(8),
-        child: PopupMenuButton(
+        child: PopupMenuButton<MenuItem>(
           offset: const Offset(0, 40),
           child: TextButton.icon(
             label: Text(appLocalizations.event),
@@ -122,25 +129,24 @@ class TopPage extends StatelessWidget {
             ),
             onPressed: null,
           ),
-          onSelected: (value) async {
-            switch (value) {
-              case '/flutterkaigi2021':
-                {
-                  await launch(
-                    'https://flutterkaigi.jp/2021',
-                    webOnlyWindowName: '_blank',
-                  );
-                  break;
-                }
-              default:
-                {
-                  await launch(
-                    'https://flutter-jp.connpass.com/',
-                    webOnlyWindowName: '_blank',
-                  );
-                  break;
-                }
+          onSelected: (MenuItem result) async {
+            String urlString;
+            switch (result) {
+              case MenuItem.pastEvent:
+                urlString = 'https://flutterkaigi.jp/2021';
+                break;
+              case MenuItem.event:
+                urlString = 'https://flutter-jp.connpass.com/';
+                break;
+              case MenuItem.tweet:
+                urlString =
+                    'https://twitter.com/intent/tweet?hashtags=FlutterKaigi';
+                break;
             }
+            await launch(
+              urlString,
+              webOnlyWindowName: '_blank',
+            );
           },
           itemBuilder: (BuildContext context) {
             return [
@@ -156,7 +162,7 @@ class TopPage extends StatelessWidget {
                     height: 1.3,
                   ),
                 ),
-                value: '/flutterkaigi2021',
+                value: MenuItem.pastEvent,
               ),
               PopupMenuItem(
                 child: Text(
@@ -170,7 +176,7 @@ class TopPage extends StatelessWidget {
                     height: 1.3,
                   ),
                 ),
-                value: '/other',
+                value: MenuItem.event,
               ),
             ];
           },
