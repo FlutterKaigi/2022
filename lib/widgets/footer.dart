@@ -294,12 +294,12 @@ class Footer extends StatelessWidget {
 
 class _FooterButton extends StatelessWidget {
   const _FooterButton({
-    super.key,
+    Key? key,
     required this.message,
     this.text,
     this.icon,
     required this.onPressed,
-  });
+  }) : super(key: key);
 
   final String message;
   final String? text;
