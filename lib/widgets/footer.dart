@@ -9,9 +9,9 @@ import 'package:styled_text/styled_text.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Footer extends StatelessWidget {
-  Footer({super.key, required this.layout});
+  const Footer({super.key, required this.layout});
 
-  ResponsiveLayout layout;
+  final ResponsiveLayout layout;
 
   @override
   Widget build(BuildContext context) {
