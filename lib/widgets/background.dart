@@ -73,7 +73,7 @@ class _BackgroundCanvasState extends State<BackgroundCanvas>
 }
 
 class _Background extends StatelessWidget {
-  const _Background({super.key, required this.logos});
+  const _Background({Key? key, required this.logos}) : super(key: key);
 
   final List<Logo> logos;
 

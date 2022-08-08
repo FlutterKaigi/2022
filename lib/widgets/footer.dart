@@ -9,9 +9,9 @@ import 'package:styled_text/styled_text.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Footer extends StatelessWidget {
-  Footer({super.key, required this.layout});
+  const Footer({super.key, required this.layout});
 
-  ResponsiveLayout layout;
+  final ResponsiveLayout layout;
 
   @override
   Widget build(BuildContext context) {
@@ -294,12 +294,12 @@ class Footer extends StatelessWidget {
 
 class _FooterButton extends StatelessWidget {
   const _FooterButton({
-    super.key,
+    Key? key,
     required this.message,
     this.text,
     this.icon,
     required this.onPressed,
-  });
+  }) : super(key: key);
 
   final String message;
   final String? text;
