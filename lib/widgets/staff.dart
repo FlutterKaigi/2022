@@ -22,27 +22,21 @@ class StaffSection extends StatelessWidget {
           DividerWithTitle(text: appLocalizations.executive_committee),
           Container(
             alignment: Alignment.center,
-            child: SizedBox(
-                height: 400,
-                child: Center(
-                  child: GridView.extent(
-                    shrinkWrap: true,
-                    primary: false,
-                    padding: const EdgeInsets.all(24),
-                    crossAxisSpacing: 24,
-                    mainAxisSpacing: 24,
-                    maxCrossAxisExtent: 100,
-                    children: kStaffList
-                        .map(
-                          (e) => StaffItem(
-                            name: e['name'] ?? '',
-                            photo: e['photo'] ?? '',
-                            url: e['url'] ?? '',
-                          ),
-                        )
-                        .toList(),
-                  ),
-                )),
+            child: Wrap(
+              children: kStaffList
+                  .map(
+                    (e) => SizedBox(
+                      height: 128,
+                      width: 128,
+                      child: StaffItem(
+                        name: e['name'] ?? '',
+                        photo: e['photo'] ?? '',
+                        url: e['url'] ?? '',
+                      ),
+                    ),
+                  )
+                  .toList(),
+            ),
           ),
         ],
       ),
