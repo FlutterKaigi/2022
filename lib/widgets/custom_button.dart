@@ -33,8 +33,8 @@ class CustomButton extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                   shape: const StadiumBorder(),
                   padding: const EdgeInsets.all(28),
-                  primary: Colors.orange,
-                  onPrimary: Colors.black87,
+                  backgroundColor: Colors.orange,
+                  foregroundColor: Colors.black87,
                 ),
                 child: Text(
                   title,

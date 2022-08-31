@@ -22,13 +22,13 @@ class AppTheme {
       backgroundColor: Colors.white,
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
-          primary: Colors.black, // text
+          foregroundColor: Colors.black, // text
           // enabledMouseCursor: MouseCursor.defer,
         ),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          onPrimary: Colors.white, // foreground(text)
+          foregroundColor: Colors.white, // foreground(text)
           // enabledMouseCursor: MouseCursor.defer,
         ),
       ),
