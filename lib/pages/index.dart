@@ -275,22 +275,14 @@ class Body extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             CustomButton(
-                              isShow: !initialLaunched,
-                              colors: startSession
-                                  ? const [Colors.green, Colors.teal]
-                                  : null,
-                              title: appLocalizations.session,
-                              message: startSession
-                                  ? appLocalizations.submitProposal
-                                  : appLocalizations.waitFor,
-                              onPress: startSession
-                                  ? () async {
-                                      await launch(
-                                        'https://fortee.jp/flutterkaigi-2022/speaker/proposal/cfp',
-                                        webOnlyWindowName: '_blank',
-                                      );
-                                    }
-                                  : null,
+                              isShow: true,
+                              colors: const [Colors.orange, Colors.red],
+                              title: appLocalizations.schedule,
+                              message: appLocalizations.showSchedule,
+                              onPress: () => launch(
+                                'https://fortee.jp/flutterkaigi-2022/timetable',
+                                webOnlyWindowName: '_blank',
+                              ),
                             ),
                             CustomButton(
                               isShow: !initialLaunched,
