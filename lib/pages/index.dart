@@ -81,7 +81,7 @@ class TopPage extends StatelessWidget {
         },
         itemBuilder: (BuildContext context) => <PopupMenuEntry<MenuItem>>[
           PopupMenuItem<MenuItem>(
-            child: Text(appLocalizations.staff),
+            child: Text(appLocalizations.executive_committee),
             value: MenuItem.staff,
           ),
           const PopupMenuItem<MenuItem>(
@@ -128,7 +128,7 @@ class TopPage extends StatelessWidget {
       Container(
         margin: const EdgeInsets.all(8),
         child: TextButton(
-          child: Text(appLocalizations.staff),
+          child: Text(appLocalizations.executive_committee),
           onPressed: () => Scrollable.ensureVisible(staffKey.currentContext!),
         ),
       ),
