@@ -1,6 +1,6 @@
-import 'package:confwebsite2022/data/global_key.dart';
 import 'package:confwebsite2022/gen/assets.gen.dart';
 import 'package:confwebsite2022/responsive_layout_builder.dart';
+import 'package:confwebsite2022/util/scroll_util.dart';
 import 'package:confwebsite2022/widgets/background.dart';
 import 'package:confwebsite2022/widgets/custom_button.dart';
 import 'package:confwebsite2022/widgets/features.dart';
@@ -13,7 +13,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-enum MenuItem { pastEvent, event, tweet, staff }
+enum MenuItem { pastEvent, event, tweet, staff, sponsor }
 
 class TopPage extends StatelessWidget {
   const TopPage({super.key});
@@ -71,7 +71,10 @@ class TopPage extends StatelessWidget {
                   'https://twitter.com/intent/tweet?hashtags=FlutterKaigi';
               break;
             case MenuItem.staff:
-              Scrollable.ensureVisible(staffKey.currentContext!);
+              await animationScroll(MenuItem.staff);
+              return;
+            case MenuItem.sponsor:
+              await animationScroll(MenuItem.sponsor);
               return;
           }
           await launch(
@@ -125,11 +128,18 @@ class TopPage extends StatelessWidget {
   List<Widget> buildActionButtons(BuildContext context) {
     final appLocalizations = AppLocalizations.of(context)!;
     return [
+      /*Container(
+        margin: const EdgeInsets.all(8),
+        child: TextButton(
+          child: Text(appLocalizations.sponsor),
+          onPressed: () async => await animationScroll(MenuItem.sponsor),
+        ),
+      ),*/
       Container(
         margin: const EdgeInsets.all(8),
         child: TextButton(
           child: Text(appLocalizations.executive_committee),
-          onPressed: () => Scrollable.ensureVisible(staffKey.currentContext!),
+          onPressed: () async => await animationScroll(MenuItem.staff),
         ),
       ),
       Container(
@@ -158,7 +168,10 @@ class TopPage extends StatelessWidget {
                     'https://twitter.com/intent/tweet?hashtags=FlutterKaigi';
                 break;
               case MenuItem.staff:
-                Scrollable.ensureVisible(staffKey.currentContext!);
+                await animationScroll(MenuItem.staff);
+                return;
+              case MenuItem.sponsor:
+                await animationScroll(MenuItem.sponsor);
                 return;
             }
             await launch(
@@ -339,7 +352,7 @@ class Body extends StatelessWidget {
                 ),
                 const Gap(32),
                 const StaffSection(
-                  key: staffKey,
+                  key: GlobalObjectKey(MenuItem.staff),
                 ),
                 const Spacer(),
                 Footer(layout: layout),
