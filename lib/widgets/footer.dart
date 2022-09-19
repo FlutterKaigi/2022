@@ -34,24 +34,24 @@ class Footer extends StatelessWidget {
       },
     ];
 
-    final footerItem = footerLinks.map((link) {
-      return _FooterButton(
-          message: link['name']!,
-          text: link['name']!,
-          onPressed: () async {
-            await launch(link['url']!);
-          });
-    }).toList()
-      ..add(
+    final footerItem = [
+      for (final item in footerLinks)
         _FooterButton(
-            message: appLocalizations.licenses,
-            text: appLocalizations.licenses,
-            onPressed: () {
-              showLicensePage(
-                context: context,
-              );
-            }),
-      );
+          message: item['name']!,
+          text: item['name'],
+          onPressed: () => launch(item['url']!),
+        ),
+      _FooterButton(
+        message: appLocalizations.session,
+        text: appLocalizations.session,
+        onPressed: () {},
+      ),
+      _FooterButton(
+        message: appLocalizations.licenses,
+        text: appLocalizations.licenses,
+        onPressed: () => showLicensePage(context: context),
+      ),
+    ];
 
     final socialItem = kSocialLinks.map((dynamic link) {
       return _FooterButton(
