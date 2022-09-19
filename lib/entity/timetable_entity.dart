@@ -6,13 +6,14 @@ class TimetableEntity {
 
   const TimetableEntity({this.timetable = const []});
 
-  factory TimetableEntity.fromJson(Map<String, dynamic> json) =>
-      json['timetable'] == null
-          ? const TimetableEntity()
-          : TimetableEntity(
-              timetable:
-                  json['timetable'].map((e) => Timetable.fromJson(e)).toList(),
-            );
+  factory TimetableEntity.fromJson(Map<String, dynamic> json) {
+    if (json['timetable'] == null) return const TimetableEntity();
+
+    final List<Timetable> timetable = (json['timetable'] as List<dynamic>)
+        .map((e) => Timetable.fromJson(e))
+        .toList();
+    return TimetableEntity(timetable: timetable);
+  }
 
   Map<String, dynamic>? toJson() {
     final data = <String, dynamic>{};
@@ -31,10 +32,11 @@ class Timetable {
   final String title;
   final String abstract;
   final Track track;
-  final String startsAt;
+  final DateTime? startsAt;
   final int lengthMin;
   final Speaker speaker;
   final int favCount;
+  final String url;
 
   const Timetable({
     this.type = '',
@@ -42,22 +44,24 @@ class Timetable {
     this.title = '',
     this.abstract = '',
     this.track = const Track(),
-    this.startsAt = '',
+    this.startsAt,
     this.lengthMin = 0,
     this.speaker = const Speaker(),
     this.favCount = 0,
+    this.url = '',
   });
 
   factory Timetable.fromJson(Map<String, dynamic> json) => Timetable(
-        type: json['type'],
-        uuid: json['uuid'],
-        title: json['title'],
-        abstract: json['abstract'],
+        type: json['type'] ?? '',
+        uuid: json['uuid'] ?? '',
+        title: json['title'] ?? '',
+        abstract: json['abstract'] ?? '',
         track: Track.fromJson(json['track'] ?? {}),
-        startsAt: json['starts_at'],
-        lengthMin: json['length_min'],
+        startsAt: DateTime.tryParse(json['starts_at'] ?? ''),
+        lengthMin: json['length_min'] ?? 0,
         speaker: Speaker.fromJson(json['speaker'] ?? {}),
-        favCount: json['fav_count'],
+        favCount: json['fav_count'] ?? 0,
+        url: json['url'] ?? '',
       );
 
   Map<String, dynamic> toJson() {
@@ -67,16 +71,17 @@ class Timetable {
     data['title'] = title;
     data['abstract'] = abstract;
     data['track'] = track.toJson();
-    data['starts_at'] = startsAt;
+    data['starts_at'] = startsAt?.toIso8601String();
     data['length_min'] = lengthMin;
     data['speaker'] = speaker.toJson();
     data['fav_count'] = favCount;
+    data['url'] = url;
     return data;
   }
 
   @override
   String toString() {
-    return 'Timetable(type: $type, uuid: $uuid, title: $title, abstract: $abstract, track: $track, startsAt: $startsAt, lengthMin: $lengthMin, speaker: $speaker, favCount: $favCount)';
+    return 'Timetable(type: $type, uuid: $uuid, title: $title, abstract: $abstract, track: $track, startsAt: $startsAt, lengthMin: $lengthMin, speaker: $speaker, favCount: $favCount, url: $url)';
   }
 }
 
@@ -91,8 +96,8 @@ class Track {
   });
 
   factory Track.fromJson(Map<String, dynamic> json) => Track(
-        name: json['name'],
-        sort: json['sort'],
+        name: json['name'] ?? '',
+        sort: json['sort'] ?? '',
       );
 
   Map<String, dynamic> toJson() {
@@ -121,10 +126,10 @@ class Speaker {
   });
 
   factory Speaker.fromJson(Map<String, dynamic> json) => Speaker(
-        name: json['name'],
-        kana: json['kana'],
-        twitter: json['twitter'],
-        avatarUrl: json['avatar_url'],
+        name: json['name'] ?? '',
+        kana: json['kana'] ?? '',
+        twitter: json['twitter'] ?? '',
+        avatarUrl: json['avatar_url'] ?? '',
       );
 
   Map<String, dynamic> toJson() {
