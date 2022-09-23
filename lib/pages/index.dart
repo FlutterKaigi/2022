@@ -83,6 +83,10 @@ class TopPage extends StatelessWidget {
           );
         },
         itemBuilder: (BuildContext context) => <PopupMenuEntry<MenuItem>>[
+          /*PopupMenuItem<MenuItem>(
+            child: Text(appLocalizations.sponsor),
+            value: MenuItem.sponsor,
+          ),*/
           PopupMenuItem<MenuItem>(
             child: Text(appLocalizations.executive_committee),
             value: MenuItem.staff,
