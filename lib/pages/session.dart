@@ -19,10 +19,8 @@ final sessionList = FutureProvider((_) async {
       .get(Uri.parse('https://fortee.jp/flutterkaigi-2022/api/timetable'));
   if (response.statusCode == 200) {
     var responseBody = utf8.decode(response.bodyBytes);
-    return Future.value(TimetableEntity.fromJson(jsonDecode(responseBody))
-        .timetable
-        .where((element) => element.type == 'talk')
-        .toList());
+    final parsed = TimetableEntity.fromJson(jsonDecode(responseBody)).timetable;
+    return Future.value(parsed.where((e) => e.track.name == 'Live').toList());
   }
   return Future.value(const TimetableEntity().timetable);
 });
@@ -112,7 +110,10 @@ class _SessionList extends StatelessWidget {
               ),
               const SizedBox(height: 4),
               for (final session in division.values.elementAt(i)) ...[
-                _CardItem(item: session),
+                session.type.when(
+                  timeslot: () => _Timeslot(item: session),
+                  talk: () => _CardItem(item: session),
+                ),
                 const SizedBox(height: 8),
               ],
             ],
@@ -125,6 +126,20 @@ class _SessionList extends StatelessWidget {
 
 final dateTimeFormatter = DateFormat.Md('ja').add_Hm();
 final timeFormatter = DateFormat.Hm('ja');
+
+class _Timeslot extends StatelessWidget {
+  final Timetable item;
+
+  const _Timeslot({
+    Key? key,
+    required this.item,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const SizedBox.shrink();
+  }
+}
 
 class _CardItem extends StatelessWidget {
   final Timetable item;

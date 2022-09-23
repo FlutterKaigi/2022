@@ -1,5 +1,21 @@
 import 'package:flutter/foundation.dart';
 
+enum SessionType { talk, timeslot }
+
+extension SessionTypePatternMatch on SessionType {
+  T when<T>({
+    required T Function() talk,
+    required T Function() timeslot,
+  }) {
+    switch (this) {
+      case SessionType.talk:
+        return talk();
+      case SessionType.timeslot:
+        return timeslot();
+    }
+  }
+}
+
 @immutable
 class TimetableEntity {
   final List<Timetable> timetable;
@@ -27,7 +43,7 @@ class TimetableEntity {
 
 @immutable
 class Timetable {
-  final String type;
+  final SessionType type;
   final String uuid;
   final String title;
   final String abstract;
@@ -39,7 +55,7 @@ class Timetable {
   final String url;
 
   const Timetable({
-    this.type = '',
+    this.type = SessionType.talk,
     this.uuid = '',
     this.title = '',
     this.abstract = '',
@@ -52,7 +68,7 @@ class Timetable {
   });
 
   factory Timetable.fromJson(Map<String, dynamic> json) => Timetable(
-        type: json['type'] ?? '',
+        type: SessionType.values.byName(json['type'] ?? ''),
         uuid: json['uuid'] ?? '',
         title: json['title'] ?? '',
         abstract: json['abstract'] ?? '',
