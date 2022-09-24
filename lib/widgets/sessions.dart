@@ -5,7 +5,6 @@ import 'package:confwebsite2022/responsive_layout_builder.dart';
 import 'package:confwebsite2022/widgets/divider_with_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:http/http.dart' as http;
@@ -15,6 +14,9 @@ import 'package:url_launcher/url_launcher.dart';
 const kSkyblue = Color(0xFF4ACCEB);
 const kBlue = Color(0xFF174C90);
 const kRed = Color(0xFFCA2421);
+const timeslotColor = Color(0x66F25D50);
+const talkColor = Color(0x666200EE);
+const sponsorColor = Color(0x66FFF275);
 
 final sessionList = FutureProvider((_) async {
   var response = await http
@@ -74,7 +76,7 @@ class _SessionList extends ConsumerWidget {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         DividerWithTitle(text: appLocalizations.schedule),
-        const Gap(8),
+        const Gap(24),
         ResponsiveLayoutBuilder(builder: (context, layout, _) {
           switch (layout) {
             case ResponsiveLayout.slim:
@@ -90,12 +92,13 @@ class _SessionList extends ConsumerWidget {
               );
           }
         }),
+        const Gap(24),
         for (final session in division.values.elementAt(selectedDay)) ...[
           session.type.when(
             timeslot: () => _Timeslot(item: session),
             talk: () => _CardItem(item: session),
           ),
-          const Gap(8),
+          const Gap(16),
         ],
       ],
     );
@@ -193,8 +196,14 @@ class _DaySelectorSlim extends ConsumerWidget {
   }
 }
 
-final dateTimeFormatter = DateFormat.Md('ja').add_Hm();
 final timeFormatter = DateFormat.Hm('ja');
+
+String createSessionTimeRange(Timetable item) {
+  final startTime = item.startsAt?.toLocal();
+  if (startTime == null) return '';
+  final finishTime = startTime.add(Duration(minutes: item.lengthMin));
+  return '${timeFormatter.format(startTime)} - ${timeFormatter.format(finishTime)}';
+}
 
 class _Timeslot extends StatelessWidget {
   final Timetable item;
@@ -206,7 +215,31 @@ class _Timeslot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox.shrink();
+    final sessionTimeRange = createSessionTimeRange(item);
+
+    return Container(
+      decoration: const BoxDecoration(
+        border: Border.symmetric(
+          horizontal: BorderSide(color: timeslotColor, width: 2),
+        ),
+      ),
+      width: double.infinity,
+      child: Column(
+        children: <Widget>[
+          const Gap(20),
+          Text(
+            item.title,
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          const Gap(40),
+          Text(
+            sessionTimeRange,
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+          const Gap(20),
+        ],
+      ),
+    );
   }
 }
 
@@ -220,71 +253,50 @@ class _CardItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appLocalizations = AppLocalizations.of(context)!;
-    final sessionTimeRange = () {
-      final startTime = item.startsAt?.toLocal();
-      if (startTime == null) return '';
-      final finishTime = startTime.add(Duration(minutes: item.lengthMin));
-      return '${dateTimeFormatter.format(startTime)}-${timeFormatter.format(finishTime)}';
-    }();
+    final sessionTimeRange = createSessionTimeRange(item);
+    final speakerName = Text(
+      item.speaker.name,
+      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+    );
 
-    return Tooltip(
-      message: appLocalizations.checkSessionDetailsInFortee,
-      child: ListTile(
-        dense: true,
-        leading: const Icon(Icons.movie),
-        title: Text(
-          item.title,
-          style: const TextStyle(
-            fontSize: 15.0,
-            fontWeight: FontWeight.bold,
+    return InkWell(
+      onTap: () => launch(item.url, webOnlyWindowName: '_blank'),
+      child: Container(
+        decoration: const BoxDecoration(
+          border: Border.symmetric(
+            horizontal: BorderSide(color: talkColor, width: 2),
           ),
         ),
-        subtitle: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
+        width: double.infinity,
+        child: Column(
           children: <Widget>[
-            Container(
-              padding: const EdgeInsets.only(top: 4),
-              child: Text(
-                item.speaker.name,
-                style: const TextStyle(
-                  fontSize: 14.0,
-                  fontWeight: FontWeight.normal,
-                ),
-              ),
+            const Gap(20),
+            Text(
+              item.title,
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            Container(
-              padding: const EdgeInsets.only(top: 4),
-              child: Text(
-                sessionTimeRange,
-                style: const TextStyle(
-                  fontSize: 12.0,
-                  fontWeight: FontWeight.normal,
-                ),
-              ),
-            ),
-          ],
-        ),
-        trailing: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
+            const Gap(4),
+            if (item.speaker.twitter.isNotEmpty)
               Tooltip(
-                message: item.speaker.twitter,
-                child: IconButton(
-                  icon: SvgPicture.asset(
-                    '/twitter_logo.svg',
-                    width: 40,
-                  ),
-                  onPressed: () => launch(
+                message: 'Twitter: @${item.speaker.twitter}',
+                child: GestureDetector(
+                  onTap: () => launch(
                     'https://twitter.com/${item.speaker.twitter}',
                     webOnlyWindowName: '_blank',
                   ),
+                  child: speakerName,
                 ),
-              ),
-            ]),
-        onTap: () => launch(item.url, webOnlyWindowName: '_blank'),
+              )
+            else
+              speakerName,
+            const Gap(40),
+            Text(
+              sessionTimeRange,
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            const Gap(20),
+          ],
+        ),
       ),
     );
   }
