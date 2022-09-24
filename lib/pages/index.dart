@@ -1,3 +1,4 @@
+import 'package:confwebsite2022/data/global_key.dart';
 import 'package:confwebsite2022/gen/assets.gen.dart';
 import 'package:confwebsite2022/responsive_layout_builder.dart';
 import 'package:confwebsite2022/widgets/background.dart';
@@ -13,7 +14,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-enum MenuItem { pastEvent, event, tweet }
+enum MenuItem { pastEvent, event, tweet, staff }
 
 class TopPage extends StatelessWidget {
   const TopPage({super.key});
@@ -70,6 +71,9 @@ class TopPage extends StatelessWidget {
               urlString =
                   'https://twitter.com/intent/tweet?hashtags=FlutterKaigi';
               break;
+            case MenuItem.staff:
+              Scrollable.ensureVisible(staffKey.currentContext!);
+              return;
           }
           await launch(
             urlString,
@@ -77,6 +81,10 @@ class TopPage extends StatelessWidget {
           );
         },
         itemBuilder: (BuildContext context) => <PopupMenuEntry<MenuItem>>[
+          PopupMenuItem<MenuItem>(
+            child: Text(appLocalizations.executive_committee),
+            value: MenuItem.staff,
+          ),
           const PopupMenuItem<MenuItem>(
             value: MenuItem.pastEvent,
             child: Text('FlutterKaigi 2021'),
@@ -120,6 +128,13 @@ class TopPage extends StatelessWidget {
     return [
       Container(
         margin: const EdgeInsets.all(8),
+        child: TextButton(
+          child: Text(appLocalizations.executive_committee),
+          onPressed: () => Scrollable.ensureVisible(staffKey.currentContext!),
+        ),
+      ),
+      Container(
+        margin: const EdgeInsets.all(8),
         child: PopupMenuButton<MenuItem>(
           offset: const Offset(0, 40),
           child: TextButton.icon(
@@ -143,6 +158,9 @@ class TopPage extends StatelessWidget {
                 urlString =
                     'https://twitter.com/intent/tweet?hashtags=FlutterKaigi';
                 break;
+              case MenuItem.staff:
+                Scrollable.ensureVisible(staffKey.currentContext!);
+                return;
             }
             await launch(
               urlString,
@@ -305,7 +323,7 @@ class Body extends StatelessWidget {
             const SessionList(),
             const Gap(32),
           ],
-          const StaffSection(),
+          const StaffSection(key: staffKey),
           Footer(layout: layout),
         ],
       );
