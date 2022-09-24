@@ -53,6 +53,7 @@ class Timetable {
   final Speaker speaker;
   final int favCount;
   final String url;
+  final List<Tag> tags;
 
   const Timetable({
     this.type = SessionType.talk,
@@ -65,7 +66,10 @@ class Timetable {
     this.speaker = const Speaker(),
     this.favCount = 0,
     this.url = '',
+    this.tags = const [],
   });
+
+  bool get isSponsored => tags.where((e) => e.name == 'Sponsored').isNotEmpty;
 
   factory Timetable.fromJson(Map<String, dynamic> json) => Timetable(
         type: SessionType.values.byName(json['type'] ?? ''),
@@ -78,6 +82,11 @@ class Timetable {
         speaker: Speaker.fromJson(json['speaker'] ?? {}),
         favCount: json['fav_count'] ?? 0,
         url: json['url'] ?? '',
+        tags: json['tags'] != null
+            ? (json['tags'] as List<dynamic>)
+                .map((e) => Tag.fromJson(e))
+                .toList()
+            : [],
       );
 
   Map<String, dynamic> toJson() {
@@ -92,13 +101,36 @@ class Timetable {
     data['speaker'] = speaker.toJson();
     data['fav_count'] = favCount;
     data['url'] = url;
+    data['tags'] = tags.map((e) => e.toJson()).toList();
     return data;
   }
 
   @override
   String toString() {
-    return 'Timetable(type: $type, uuid: $uuid, title: $title, abstract: $abstract, track: $track, startsAt: $startsAt, lengthMin: $lengthMin, speaker: $speaker, favCount: $favCount, url: $url)';
+    return 'Timetable(type: $type, uuid: $uuid, title: $title, abstract: $abstract, track: $track, startsAt: $startsAt, lengthMin: $lengthMin, speaker: $speaker, favCount: $favCount, url: $url, tags: $tags)';
   }
+}
+
+@immutable
+class Tag {
+  final String name;
+
+  const Tag({
+    this.name = '',
+  });
+
+  factory Tag.fromJson(Map<String, dynamic> json) => Tag(
+        name: json['name'] ?? '',
+      );
+
+  Map<String, dynamic> toJson() {
+    final data = <String, dynamic>{};
+    data['name'] = name;
+    return data;
+  }
+
+  @override
+  String toString() => 'Tag(name: $name)';
 }
 
 @immutable

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:confwebsite2022/entity/timetable_entity.dart';
 import 'package:confwebsite2022/responsive_layout_builder.dart';
+import 'package:confwebsite2022/theme.dart';
 import 'package:confwebsite2022/widgets/divider_with_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -11,12 +12,9 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-const kSkyblue = Color(0xFF4ACCEB);
-const kBlue = Color(0xFF174C90);
-const kRed = Color(0xFFCA2421);
 const timeslotColor = Color(0x66F25D50);
 const talkColor = Color(0x666200EE);
-const sponsorColor = Color(0x66FFF275);
+const sponsorColor = Color(0xffFFF275);
 
 final sessionList = FutureProvider((_) async {
   var response = await http
@@ -96,7 +94,7 @@ class _SessionList extends ConsumerWidget {
         for (final session in division.values.elementAt(selectedDay)) ...[
           session.type.when(
             timeslot: () => _Timeslot(item: session),
-            talk: () => _CardItem(item: session),
+            talk: () => _Talk(item: session),
           ),
           const Gap(16),
         ],
@@ -243,10 +241,10 @@ class _Timeslot extends StatelessWidget {
   }
 }
 
-class _CardItem extends StatelessWidget {
+class _Talk extends StatelessWidget {
   final Timetable item;
 
-  const _CardItem({
+  const _Talk({
     Key? key,
     required this.item,
   }) : super(key: key);
@@ -259,43 +257,56 @@ class _CardItem extends StatelessWidget {
       style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
     );
 
-    return InkWell(
-      onTap: () => launch(item.url, webOnlyWindowName: '_blank'),
-      child: Container(
-        decoration: const BoxDecoration(
-          border: Border.symmetric(
-            horizontal: BorderSide(color: talkColor, width: 2),
+    return Material(
+      color: item.isSponsored ? sponsorColor.withOpacity(0.4) : null,
+      child: InkWell(
+        onTap: () => launch(item.url, webOnlyWindowName: '_blank'),
+        child: Container(
+          decoration: BoxDecoration(
+            border: Border.symmetric(
+              horizontal: BorderSide(
+                color: item.isSponsored ? sponsorColor : talkColor,
+                width: 2,
+              ),
+            ),
           ),
-        ),
-        width: double.infinity,
-        child: Column(
-          children: <Widget>[
-            const Gap(20),
-            Text(
-              item.title,
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            const Gap(4),
-            if (item.speaker.twitter.isNotEmpty)
-              Tooltip(
-                message: 'Twitter: @${item.speaker.twitter}',
-                child: GestureDetector(
-                  onTap: () => launch(
-                    'https://twitter.com/${item.speaker.twitter}',
-                    webOnlyWindowName: '_blank',
-                  ),
-                  child: speakerName,
+          width: double.infinity,
+          child: Column(
+            children: <Widget>[
+              const Gap(20),
+              Text(
+                item.title,
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
                 ),
-              )
-            else
-              speakerName,
-            const Gap(40),
-            Text(
-              sessionTimeRange,
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            const Gap(20),
-          ],
+                textAlign: TextAlign.center,
+              ),
+              const Gap(4),
+              if (item.speaker.twitter.isNotEmpty)
+                Tooltip(
+                  message: 'Twitter: @${item.speaker.twitter}',
+                  child: GestureDetector(
+                    onTap: () => launch(
+                      'https://twitter.com/${item.speaker.twitter}',
+                      webOnlyWindowName: '_blank',
+                    ),
+                    child: speakerName,
+                  ),
+                )
+              else
+                speakerName,
+              const Gap(40),
+              Text(
+                sessionTimeRange,
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const Gap(20),
+            ],
+          ),
         ),
       ),
     );
