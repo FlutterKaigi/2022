@@ -295,8 +295,10 @@ class Body extends StatelessWidget {
           const Gap(16),
           const Social(),
           const Gap(32),
-          const SessionList(),
-          const Gap(32),
+          if (showSchedule) ...[
+            const SessionList(),
+            const Gap(32),
+          ],
           const StaffSection(),
           Footer(layout: layout),
         ],
