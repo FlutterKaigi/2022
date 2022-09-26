@@ -136,4 +136,10 @@ final kStaffList = [
         'https://pbs.twimg.com/profile_images/1546990476091281409/Ma0BdiNm_400x400.jpg',
     'url': 'https://twitter.com/kazuhitonakayam',
   },
+  {
+    'name': 'okaryo',
+    'photo':
+        'https://pbs.twimg.com/profile_images/1111846203975598080/_LGNmqKU_400x400.png',
+    'url': 'https://twitter.com/okaryoX',
+  },
 ];
