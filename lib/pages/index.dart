@@ -6,6 +6,7 @@ import 'package:confwebsite2022/widgets/custom_button.dart';
 import 'package:confwebsite2022/widgets/features.dart';
 import 'package:confwebsite2022/widgets/footer.dart';
 import 'package:confwebsite2022/widgets/social.dart';
+import 'package:confwebsite2022/widgets/sponsor.dart';
 import 'package:confwebsite2022/widgets/staff.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -337,6 +338,8 @@ class Body extends StatelessWidget {
                     ],
                   ),
                 ),
+                const Gap(32),
+                const SponsorSection(),
                 const Gap(32),
                 const StaffSection(
                   key: staffKey,
