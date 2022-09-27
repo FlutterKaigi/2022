@@ -109,16 +109,13 @@ class SponsorItem extends StatelessWidget {
       },
       child: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: 120,
-              width: 120,
-              child: SvgPicture.asset(logo),
-            ),
-            FittedBox(child: Text(name)),
-          ],
+        child: SizedBox(
+          height: 120,
+          width: 120,
+          child: SvgPicture.asset(
+            logo,
+            semanticsLabel: name,
+          ),
         ),
       ),
     );
