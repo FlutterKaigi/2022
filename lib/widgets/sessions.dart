@@ -227,7 +227,7 @@ class _Timeslot extends StatelessWidget {
           const Gap(20),
           Text(
             item.title,
-            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
           ),
           const Gap(40),
           Text(
@@ -277,7 +277,7 @@ class _Talk extends StatelessWidget {
               Text(
                 item.title,
                 style: const TextStyle(
-                  fontSize: 20,
+                  fontSize: 22,
                   fontWeight: FontWeight.bold,
                 ),
                 textAlign: TextAlign.center,
