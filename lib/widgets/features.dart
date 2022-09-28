@@ -12,3 +12,6 @@ const startSponsor = false;
 
 /// タイムテーブル公開の開始
 const showSchedule = false;
+
+/// スポンサーロゴ公開の開始
+const showSponsorLogo = false;

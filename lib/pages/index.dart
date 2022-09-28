@@ -324,8 +324,10 @@ class Body extends StatelessWidget {
             const SessionList(),
             const Gap(32),
           ],
-          const Gap(32),
-          const SponsorSection(),
+          if (showSponsorLogo) ...[
+            const SponsorSection(),
+            const Gap(32),
+          ],
           const StaffSection(key: staffKey),
           Footer(layout: layout),
         ],
