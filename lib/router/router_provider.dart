@@ -10,7 +10,7 @@ final routerProvider = Provider(
       GoRoute(
         path: '/',
         builder: (_, __) => const TopPage(),
-      )
+      ),
     ],
     errorPageBuilder: (context, state) => MaterialPage(
       key: state.pageKey,
