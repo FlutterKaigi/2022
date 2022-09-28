@@ -83,10 +83,6 @@ class TopPage extends StatelessWidget {
           );
         },
         itemBuilder: (BuildContext context) => <PopupMenuEntry<MenuItem>>[
-          /*PopupMenuItem<MenuItem>(
-            child: Text(appLocalizations.sponsor),
-            value: MenuItem.sponsor,
-          ),*/
           PopupMenuItem<MenuItem>(
             child: Text(appLocalizations.executive_committee),
             value: MenuItem.staff,
@@ -132,13 +128,6 @@ class TopPage extends StatelessWidget {
   List<Widget> buildActionButtons(BuildContext context) {
     final appLocalizations = AppLocalizations.of(context)!;
     return [
-      /*Container(
-        margin: const EdgeInsets.all(8),
-        child: TextButton(
-          child: Text(appLocalizations.sponsor),
-          onPressed: () async => await animationScroll(MenuItem.sponsor),
-        ),
-      ),*/
       Container(
         margin: const EdgeInsets.all(8),
         child: TextButton(
