@@ -9,3 +9,9 @@ const announceSponsor = true;
 
 /// スポンサー公募の開始 (前提として上記周知のフラグを true にする)
 const startSponsor = false;
+
+/// タイムテーブル公開の開始
+const showSchedule = false;
+
+/// スポンサーロゴ公開の開始
+const showSponsorLogo = false;

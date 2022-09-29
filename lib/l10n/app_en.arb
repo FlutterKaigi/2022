@@ -7,6 +7,11 @@
     "proposalSubmissionStart": "Talk Submission Has Started!",
     "proposalList": "List of Proposals",
     "sponsor": "Sponsors",
+    "sponsorPlatinum": "Platinum",
+    "sponsorGold": "Gold",
+    "sponsorSilver": "Silver",
+    "sponsorBronze": "Bronze",
+    "sponsorMedia": "Media",
     "becomeSponsor": "Become a Sponsor",
     "waitFor": "To be announced",
     "schedule": "Schedule",
@@ -28,5 +33,6 @@
     "licenses": "Licenses",
     "disclaimer": "Flutter and the related logo are trademarks of Google LLC. FlutterKaigi is not affiliated with or otherwise sponsored by Google LLC.",
     "trademark" : "The \"Flutter\" name and the Flutter logo <FlutterLogo/> (the \"Flutter Marks\") are trademarks owned by Google.",
-    "other_event": "Other events"
+    "other_event": "Other events",
+    "back": "Go back"
 }

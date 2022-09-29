@@ -5,7 +5,9 @@ import 'package:confwebsite2022/widgets/background.dart';
 import 'package:confwebsite2022/widgets/custom_button.dart';
 import 'package:confwebsite2022/widgets/features.dart';
 import 'package:confwebsite2022/widgets/footer.dart';
+import 'package:confwebsite2022/widgets/sessions.dart';
 import 'package:confwebsite2022/widgets/social.dart';
+import 'package:confwebsite2022/widgets/sponsor.dart';
 import 'package:confwebsite2022/widgets/staff.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -245,7 +247,8 @@ class Body extends StatelessWidget {
     return ResponsiveLayoutBuilder(builder: (context, layout, width) {
       final appLocalizations = AppLocalizations.of(context)!;
       final sizeFactor = (layout == ResponsiveLayout.slim) ? 0.6 : 1.0;
-      return CustomScrollView(
+
+      return ListView(
         shrinkWrap: true,
         slivers: [
           SliverFillRemaining(
@@ -253,28 +256,24 @@ class Body extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  child: Column(
-                    children: [
-                      SvgPicture.asset(
-                        Assets.flutterkaigiLogo,
-                        width: logoWidth * sizeFactor,
+                  
+                  padding: const EdgeInsets.only(top: 16),
+                  children: [
+                    SvgPicture.asset(
+                      Assets.flutterkaigiLogo,
+                      width: logoWidth * sizeFactor,
+                    ),
+                    Center(
+                      child: Text(
+                        'FlutterKaigi',
+                        style: titleTextStyle.apply(fontSizeFactor: sizeFactor),
                       ),
-                      FittedBox(
-                        fit: BoxFit.contain,
-                        child: Text(
-                          'FlutterKaigi',
-                          style:
-                              titleTextStyle.apply(fontSizeFactor: sizeFactor),
-                        ),
-                      ),
-                      Gap(32 * sizeFactor),
-                      FittedBox(
-                        fit: BoxFit.contain,
-                        child: Text(
-                          '@ONLINE / November 16-18, 2022',
-                          style: subtitleTextStyle.apply(
-                              fontSizeFactor: sizeFactor),
+                    ),
+                    Gap(32 * sizeFactor),
+                    Center(
+                      child: Text(
+                        '@ONLINE / November 16-18, 2022',
+                        style: subtitleTextStyle.apply(fontSizeFactor: sizeFactor),
                         ),
                       ),
                       const Gap(32),
@@ -352,6 +351,73 @@ class Body extends StatelessWidget {
               ],
             ),
           ),
+          const Gap(32),
+          CustomButton(
+            isShow: initialLaunched,
+            colors: initialLaunched ? const [Colors.blue, Colors.green] : null,
+            title: appLocalizations.checkLatestNews,
+            message: appLocalizations.tweet,
+            onPress: () async {
+              await launch(
+                'https://twitter.com/FlutterKaigi',
+                webOnlyWindowName: '_blank',
+              );
+            },
+          ),
+          const Gap(16),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CustomButton(
+                isShow: !initialLaunched,
+                colors: startSession ? const [Colors.green, Colors.teal] : null,
+                title: appLocalizations.session,
+                message: startSession
+                    ? appLocalizations.submitProposal
+                    : appLocalizations.waitFor,
+                onPress: startSession
+                    ? () async {
+                        await launch(
+                          'https://fortee.jp/flutterkaigi-2022/speaker/proposal/cfp',
+                          webOnlyWindowName: '_blank',
+                        );
+                      }
+                    : null,
+              ),
+              CustomButton(
+                isShow: !initialLaunched,
+                colors:
+                    announceSponsor ? const [Colors.blue, Colors.indigo] : null,
+                title: appLocalizations.sponsor,
+                message: announceSponsor
+                    ? appLocalizations.becomeSponsor
+                    : appLocalizations.waitFor,
+                onPress: announceSponsor
+                    ? () async {
+                        await launch(
+                          startSponsor
+                              ? 'https://fortee.jp/flutterkaigi-2022/sponsor/form'
+                              : 'https://docs.google.com/presentation/d/1HEwDIi6rxzKUnZmu7EKkwR04bvTQnSjWjpw3ldunczM/edit?usp=sharing',
+                          webOnlyWindowName: '_blank',
+                        );
+                      }
+                    : null,
+              ),
+            ],
+          ),
+          const Gap(16),
+          const Social(),
+          const Gap(32),
+          if (showSchedule) ...[
+            const SessionList(),
+            const Gap(32),
+          ],
+          if (showSponsorLogo) ...[
+            const SponsorSection(),
+            const Gap(32),
+          ],
+          const StaffSection(key: staffKey),
+          Footer(layout: layout),
         ],
       );
     });
