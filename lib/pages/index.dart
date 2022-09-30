@@ -1,6 +1,6 @@
-import 'package:confwebsite2022/data/global_key.dart';
 import 'package:confwebsite2022/gen/assets.gen.dart';
 import 'package:confwebsite2022/responsive_layout_builder.dart';
+import 'package:confwebsite2022/util/scroll_util.dart';
 import 'package:confwebsite2022/widgets/background.dart';
 import 'package:confwebsite2022/widgets/custom_button.dart';
 import 'package:confwebsite2022/widgets/features.dart';
@@ -15,7 +15,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-enum MenuItem { pastEvent, event, tweet, staff }
+enum MenuItem { pastEvent, event, tweet, staff, sponsor }
 
 class TopPage extends StatelessWidget {
   const TopPage({super.key});
@@ -73,7 +73,10 @@ class TopPage extends StatelessWidget {
                   'https://twitter.com/intent/tweet?hashtags=FlutterKaigi';
               break;
             case MenuItem.staff:
-              Scrollable.ensureVisible(staffKey.currentContext!);
+              await animationScroll(MenuItem.staff);
+              return;
+            case MenuItem.sponsor:
+              await animationScroll(MenuItem.sponsor);
               return;
           }
           await launch(
@@ -82,6 +85,12 @@ class TopPage extends StatelessWidget {
           );
         },
         itemBuilder: (BuildContext context) => <PopupMenuEntry<MenuItem>>[
+          if (showSponsorLogo) ...[
+            PopupMenuItem<MenuItem>(
+              child: Text(appLocalizations.sponsor),
+              value: MenuItem.sponsor,
+            ),
+          ],
           PopupMenuItem<MenuItem>(
             child: Text(appLocalizations.executive_committee),
             value: MenuItem.staff,
@@ -127,11 +136,20 @@ class TopPage extends StatelessWidget {
   List<Widget> buildActionButtons(BuildContext context) {
     final appLocalizations = AppLocalizations.of(context)!;
     return [
+      if (showSponsorLogo) ...[
+        Container(
+          margin: const EdgeInsets.all(8),
+          child: TextButton(
+            child: Text(appLocalizations.sponsor),
+            onPressed: () async => await animationScroll(MenuItem.sponsor),
+          ),
+        ),
+      ],
       Container(
         margin: const EdgeInsets.all(8),
         child: TextButton(
           child: Text(appLocalizations.executive_committee),
-          onPressed: () => Scrollable.ensureVisible(staffKey.currentContext!),
+          onPressed: () async => await animationScroll(MenuItem.staff),
         ),
       ),
       Container(
@@ -160,7 +178,10 @@ class TopPage extends StatelessWidget {
                     'https://twitter.com/intent/tweet?hashtags=FlutterKaigi';
                 break;
               case MenuItem.staff:
-                Scrollable.ensureVisible(staffKey.currentContext!);
+                await animationScroll(MenuItem.staff);
+                return;
+              case MenuItem.sponsor:
+                await animationScroll(MenuItem.sponsor);
                 return;
             }
             await launch(
@@ -242,95 +263,101 @@ class Body extends StatelessWidget {
       final appLocalizations = AppLocalizations.of(context)!;
       final sizeFactor = (layout == ResponsiveLayout.slim) ? 0.6 : 1.0;
 
-      return ListView(
-        shrinkWrap: true,
+      return SingleChildScrollView(
         padding: const EdgeInsets.only(top: 16),
-        children: [
-          SvgPicture.asset(
-            Assets.flutterkaigiLogo,
-            width: logoWidth * sizeFactor,
-          ),
-          Center(
-            child: Text(
-              'FlutterKaigi',
-              style: titleTextStyle.apply(fontSizeFactor: sizeFactor),
+        child: Column(
+          children: [
+            SvgPicture.asset(
+              Assets.flutterkaigiLogo,
+              width: logoWidth * sizeFactor,
             ),
-          ),
-          Gap(32 * sizeFactor),
-          Center(
-            child: Text(
-              '@ONLINE / November 16-18, 2022',
-              style: subtitleTextStyle.apply(fontSizeFactor: sizeFactor),
+            Center(
+              child: Text(
+                'FlutterKaigi',
+                style: titleTextStyle.apply(fontSizeFactor: sizeFactor),
+              ),
             ),
-          ),
-          const Gap(32),
-          CustomButton(
-            isShow: initialLaunched,
-            colors: initialLaunched ? const [Colors.blue, Colors.green] : null,
-            title: appLocalizations.checkLatestNews,
-            message: appLocalizations.tweet,
-            onPress: () async {
-              await launch(
-                'https://twitter.com/FlutterKaigi',
-                webOnlyWindowName: '_blank',
-              );
-            },
-          ),
-          const Gap(16),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CustomButton(
-                isShow: !initialLaunched,
-                colors: startSession ? const [Colors.green, Colors.teal] : null,
-                title: appLocalizations.session,
-                message: startSession
-                    ? appLocalizations.submitProposal
-                    : appLocalizations.waitFor,
-                onPress: startSession
-                    ? () async {
-                        await launch(
-                          'https://fortee.jp/flutterkaigi-2022/speaker/proposal/cfp',
-                          webOnlyWindowName: '_blank',
-                        );
-                      }
-                    : null,
+            Gap(32 * sizeFactor),
+            Center(
+              child: Text(
+                '@ONLINE / November 16-18, 2022',
+                style: subtitleTextStyle.apply(fontSizeFactor: sizeFactor),
               ),
-              CustomButton(
-                isShow: !initialLaunched,
-                colors:
-                    announceSponsor ? const [Colors.blue, Colors.indigo] : null,
-                title: appLocalizations.sponsor,
-                message: announceSponsor
-                    ? appLocalizations.becomeSponsor
-                    : appLocalizations.waitFor,
-                onPress: announceSponsor
-                    ? () async {
-                        await launch(
-                          startSponsor
-                              ? 'https://fortee.jp/flutterkaigi-2022/sponsor/form'
-                              : 'https://docs.google.com/presentation/d/1HEwDIi6rxzKUnZmu7EKkwR04bvTQnSjWjpw3ldunczM/edit?usp=sharing',
-                          webOnlyWindowName: '_blank',
-                        );
-                      }
-                    : null,
-              ),
+            ),
+            const Gap(32),
+            CustomButton(
+              isShow: initialLaunched,
+              colors:
+                  initialLaunched ? const [Colors.blue, Colors.green] : null,
+              title: appLocalizations.checkLatestNews,
+              message: appLocalizations.tweet,
+              onPress: () async {
+                await launch(
+                  'https://twitter.com/FlutterKaigi',
+                  webOnlyWindowName: '_blank',
+                );
+              },
+            ),
+            const Gap(16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CustomButton(
+                  isShow: !initialLaunched,
+                  colors:
+                      startSession ? const [Colors.green, Colors.teal] : null,
+                  title: appLocalizations.session,
+                  message: startSession
+                      ? appLocalizations.submitProposal
+                      : appLocalizations.waitFor,
+                  onPress: startSession
+                      ? () async {
+                          await launch(
+                            'https://fortee.jp/flutterkaigi-2022/speaker/proposal/cfp',
+                            webOnlyWindowName: '_blank',
+                          );
+                        }
+                      : null,
+                ),
+                CustomButton(
+                  isShow: !initialLaunched,
+                  colors: announceSponsor
+                      ? const [Colors.blue, Colors.indigo]
+                      : null,
+                  title: appLocalizations.sponsor,
+                  message: announceSponsor
+                      ? appLocalizations.becomeSponsor
+                      : appLocalizations.waitFor,
+                  onPress: announceSponsor
+                      ? () async {
+                          await launch(
+                            startSponsor
+                                ? 'https://fortee.jp/flutterkaigi-2022/sponsor/form'
+                                : 'https://docs.google.com/presentation/d/1HEwDIi6rxzKUnZmu7EKkwR04bvTQnSjWjpw3ldunczM/edit?usp=sharing',
+                            webOnlyWindowName: '_blank',
+                          );
+                        }
+                      : null,
+                ),
+              ],
+            ),
+            const Gap(16),
+            const Social(),
+            const Gap(32),
+            if (showSchedule) ...[
+              const SessionList(),
+              const Gap(32),
             ],
-          ),
-          const Gap(16),
-          const Social(),
-          const Gap(32),
-          if (showSchedule) ...[
-            const SessionList(),
-            const Gap(32),
+            if (showSponsorLogo) ...[
+              const SponsorSection(
+                key: GlobalObjectKey(MenuItem.sponsor),
+              ),
+              const Gap(32),
+            ],
+            const StaffSection(key: GlobalObjectKey(MenuItem.staff)),
+            Footer(layout: layout),
           ],
-          if (showSponsorLogo) ...[
-            const SponsorSection(),
-            const Gap(32),
-          ],
-          const StaffSection(key: staffKey),
-          Footer(layout: layout),
-        ],
+        ),
       );
     });
   }
