@@ -303,7 +303,7 @@ class Body extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 CustomButton(
-                  isShow: !initialLaunched,
+                  isShow: initialLaunched || startSession,
                   colors:
                       startSession ? const [Colors.green, Colors.teal] : null,
                   title: appLocalizations.session,
@@ -320,7 +320,7 @@ class Body extends StatelessWidget {
                       : null,
                 ),
                 CustomButton(
-                  isShow: !initialLaunched,
+                  isShow: initialLaunched || announceSponsor,
                   colors: announceSponsor
                       ? const [Colors.blue, Colors.indigo]
                       : null,
