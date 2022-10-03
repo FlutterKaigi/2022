@@ -299,6 +299,35 @@ class Body extends StatelessWidget {
               },
             ),
             const Gap(16),
+            CustomButton(
+              isShow: startApply,
+              colors: startApply ? const [Colors.red, Colors.orange] : null,
+              title: appLocalizations.applyMainEvent,
+              message: appLocalizations.openMainEventPage,
+              onPress: () async {
+                await launch(
+                  // WIP (2021)
+                  'https://flutterkaigi.connpass.com/event/226034/',
+                  webOnlyWindowName: '_blank',
+                );
+              },
+            ),
+            const Gap(16),
+            CustomButton(
+              isShow: startApply,
+              colors:
+                  startApply ? const [Colors.lightGreen, Colors.yellow] : null,
+              title: appLocalizations.applyHandsonEvent,
+              message: appLocalizations.openHandsonEventPage,
+              onPress: () async {
+                await launch(
+                  // WIP (2021)
+                  'https://flutterkaigi.connpass.com/event/227769/',
+                  webOnlyWindowName: '_blank',
+                );
+              },
+            ),
+            const Gap(16),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
