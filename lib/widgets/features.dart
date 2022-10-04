@@ -14,7 +14,7 @@ const startSponsor = false;
 const showSchedule = false;
 
 /// スポンサーロゴ公開の開始
-const showSponsorLogo = false;
+const showSponsorLogo = true;
 
 /// 受付開始
 const startApply = false;
