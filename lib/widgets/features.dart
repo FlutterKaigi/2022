@@ -15,3 +15,6 @@ const showSchedule = false;
 
 /// スポンサーロゴ公開の開始
 const showSponsorLogo = false;
+
+/// 受付開始
+const startApply = false;
