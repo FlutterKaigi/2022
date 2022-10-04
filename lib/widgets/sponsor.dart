@@ -37,10 +37,6 @@ class SponsorSection extends StatelessWidget {
                   header: appLocalizations.sponsorBronze,
                   sponsors: kBronzeSponsorList,
                 ),
-                SponsorList(
-                  header: appLocalizations.sponsorMedia,
-                  sponsors: kMediaSponsorList,
-                ),
               ],
             ),
           ),

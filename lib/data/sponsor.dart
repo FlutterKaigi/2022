@@ -44,6 +44,11 @@ final kGoldSponsorList = [
     'logo': Assets.sponsor.cyberAgent,
     'url': 'https://www.cyberagent.co.jp/',
   },
+  {
+    'name': '株式会社ディー・エヌ・エー',
+    'logo': Assets.sponsor.dena,
+    'url': 'https://dena.com/',
+  },
 ];
 
 final kSilverSponsorList = [
@@ -94,13 +99,5 @@ final kBronzeSponsorList = [
     'name': '株式会社LayerX',
     'logo': Assets.sponsor.layerx,
     'url': 'https://layerx.co.jp/',
-  },
-];
-
-final kMediaSponsorList = [
-  {
-    'name': '株式会社ディー・エヌ・エー',
-    'logo': Assets.sponsor.dena,
-    'url': 'https://dena.com/',
   },
 ];
