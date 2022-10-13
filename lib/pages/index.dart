@@ -15,7 +15,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-enum MenuItem { pastEvent, event, tweet, staff, sponsor }
+enum MenuItem { pastEvent, event, tweet, staff, timetable, sponsor }
 
 class TopPage extends StatelessWidget {
   const TopPage({super.key});
@@ -75,6 +75,9 @@ class TopPage extends StatelessWidget {
             case MenuItem.staff:
               await animationScroll(MenuItem.staff);
               return;
+            case MenuItem.timetable:
+              await animationScroll(MenuItem.timetable);
+              return;
             case MenuItem.sponsor:
               await animationScroll(MenuItem.sponsor);
               return;
@@ -85,6 +88,12 @@ class TopPage extends StatelessWidget {
           );
         },
         itemBuilder: (BuildContext context) => <PopupMenuEntry<MenuItem>>[
+          if (showSchedule) ...[
+            PopupMenuItem<MenuItem>(
+              child: Text(appLocalizations.schedule),
+              value: MenuItem.timetable,
+            ),
+          ],
           if (showSponsorLogo) ...[
             PopupMenuItem<MenuItem>(
               child: Text(appLocalizations.sponsor),
@@ -136,6 +145,15 @@ class TopPage extends StatelessWidget {
   List<Widget> buildActionButtons(BuildContext context) {
     final appLocalizations = AppLocalizations.of(context)!;
     return [
+      if (showSchedule) ...[
+        Container(
+          margin: const EdgeInsets.all(8),
+          child: TextButton(
+            child: Text(appLocalizations.schedule),
+            onPressed: () async => await animationScroll(MenuItem.timetable),
+          ),
+        ),
+      ],
       if (showSponsorLogo) ...[
         Container(
           margin: const EdgeInsets.all(8),
@@ -179,6 +197,9 @@ class TopPage extends StatelessWidget {
                 break;
               case MenuItem.staff:
                 await animationScroll(MenuItem.staff);
+                return;
+              case MenuItem.timetable:
+                await animationScroll(MenuItem.timetable);
                 return;
               case MenuItem.sponsor:
                 await animationScroll(MenuItem.sponsor);
@@ -374,7 +395,9 @@ class Body extends StatelessWidget {
             const Social(),
             const Gap(32),
             if (showSchedule) ...[
-              const SessionList(),
+              const SessionList(
+                key: GlobalObjectKey(MenuItem.timetable),
+              ),
               const Gap(32),
             ],
             if (showSponsorLogo) ...[
