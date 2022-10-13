@@ -337,7 +337,7 @@ class Body extends StatelessWidget {
             CustomButton(
               isShow: startApply,
               colors:
-                  startApply ? const [Colors.lightGreen, Colors.yellow] : null,
+                  startApply ? const [Colors.teal, Colors.lightGreen] : null,
               title: appLocalizations.applyHandsonEvent,
               message: appLocalizations.openHandsonEventPage,
               onPress: () async {
