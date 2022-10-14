@@ -40954,7 +40954,7 @@ A.a0l.prototype={
 $0(){var s=0,r=A.a2(t.P)
 var $async$$0=A.a3(function(a,b){if(a===1)return A.a_(b,r)
 while(true)switch(s){case 0:s=2
-return A.aa(A.fD("https://flutterkaigi.connpass.com/event/262916/","_blank"),$async$$0)
+return A.aa(A.fD("https://connpass.com/event/262916/","_blank"),$async$$0)
 case 2:return A.a0(null,r)}})
 return A.a1($async$$0,r)},
 $S:39}
@@ -40962,7 +40962,7 @@ A.a0m.prototype={
 $0(){var s=0,r=A.a2(t.P)
 var $async$$0=A.a3(function(a,b){if(a===1)return A.a_(b,r)
 while(true)switch(s){case 0:s=2
-return A.aa(A.fD("https://flutterkaigi.connpass.com/event/263057/","_blank"),$async$$0)
+return A.aa(A.fD("https://connpass.com/event/263057/","_blank"),$async$$0)
 case 2:return A.a0(null,r)}})
 return A.a1($async$$0,r)},
 $S:39}
