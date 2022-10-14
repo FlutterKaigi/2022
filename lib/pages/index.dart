@@ -328,7 +328,7 @@ class Body extends StatelessWidget {
               onPress: () async {
                 await launch(
                   // 2022
-                  'https://flutterkaigi.connpass.com/event/262916/',
+                  'https://connpass.com/event/262916/',
                   webOnlyWindowName: '_blank',
                 );
               },
@@ -343,7 +343,7 @@ class Body extends StatelessWidget {
               onPress: () async {
                 await launch(
                   // 2022
-                  'https://flutterkaigi.connpass.com/event/263057/',
+                  'https://connpass.com/event/263057/',
                   webOnlyWindowName: '_blank',
                 );
               },
