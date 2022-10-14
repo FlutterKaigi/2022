@@ -327,8 +327,8 @@ class Body extends StatelessWidget {
               message: appLocalizations.openMainEventPage,
               onPress: () async {
                 await launch(
-                  // WIP (2021)
-                  'https://flutterkaigi.connpass.com/event/226034/',
+                  // 2022
+                  'https://flutterkaigi.connpass.com/event/262916/',
                   webOnlyWindowName: '_blank',
                 );
               },
@@ -342,8 +342,8 @@ class Body extends StatelessWidget {
               message: appLocalizations.openHandsonEventPage,
               onPress: () async {
                 await launch(
-                  // WIP (2021)
-                  'https://flutterkaigi.connpass.com/event/227769/',
+                  // 2022
+                  'https://flutterkaigi.connpass.com/event/263057/',
                   webOnlyWindowName: '_blank',
                 );
               },
