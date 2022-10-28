@@ -36,7 +36,7 @@ const RESOURCES = {
 "assets/assets/twitter_logo.svg": "631cd5664eb1d4a27681a21ca4ad6126",
 "assets/assets/sponsor/tenx.svg": "c21b0433936809fe9a7713237e63a2af",
 "assets/assets/sponsor/dena.svg": "31ad4855aa0e33fdbe871c14c371beec",
-"assets/assets/sponsor/compass.svg": "c222055ffd477b1cccec47d1062451c8",
+"assets/assets/sponsor/compass.svg": "2b93632f362e371f9b992605756dbef6",
 "assets/assets/sponsor/chompy.svg": "0a15a148cdd05da39fa24a570f671eb5",
 "assets/assets/sponsor/m3.svg": "4fa06b5764221b403a24c98b6175a903",
 "assets/assets/sponsor/hokuto.svg": "fd3709dab0a34debac90a78f278a153d",
@@ -57,7 +57,7 @@ const RESOURCES = {
 "assets/assets/medium_logo.svg": "58e9f9cb83a457fb381dc5ebc6bf39d3",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "6d342eb68f170c97609e9da345464e5e",
 "assets/flutterkaigi-navbar_dark_logo.svg": "cdc1a26f38557372e4d824e6e27ecdc3",
-"assets/shaders/ink_sparkle.frag": "e35b6596de523db6d8ed141b1569cb7a",
+"assets/shaders/ink_sparkle.frag": "2106829464cbc69620eb44f3664132c5",
 "assets/medium_logo.svg": "58e9f9cb83a457fb381dc5ebc6bf39d3",
 "icons/Icon-192.png": "02861f4b4a5637703ea4c586181ad448",
 "icons/Icon-512.png": "3f4f8b2bd2c99c17e609b03d55d09e14"
