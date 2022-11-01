@@ -6,12 +6,6 @@ final kStaffList = [
     'url': 'https://twitter.com/yagitatsu3',
   },
   {
-    'name': 'すなが',
-    'photo':
-        'https://pbs.twimg.com/profile_images/1241028282843197441/XSQf3tJk_400x400.jpg',
-    'url': 'https://twitter.com/SKKbySSK_TC',
-  },
-  {
     'name': 'y-shika',
     'photo': 'https://avatars.githubusercontent.com/u/34807109?v=4',
     'url': 'https://twitter.com/y_sh1ka',
