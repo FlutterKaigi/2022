@@ -2,6 +2,7 @@
     "home": "ホーム",
     "event": "イベント",
     "tweet": "ツイート",
+    "questionnaire": "アンケート",
     "letsTweet": "#FlutterKaigi でツイートしよう！",
     "checkLatestNews": "最新情報は公式 Twitter アカウントをチェック！",
     "proposalSubmissionStart": "トーク募集開始！",
@@ -36,5 +37,13 @@
     "disclaimer": "Flutter and the related logo are trademarks of Google LLC. FlutterKaigi is not affiliated with or otherwise sponsored by Google LLC.",
     "trademark" : "The \"Flutter\" name and the Flutter logo <FlutterLogo/> (the \"Flutter Marks\") are trademarks owned by Google.",
     "other_event": "その他のイベント",
-    "back": "戻る"
+    "back": "戻る",
+    "questionnaireTitle": "FlutterKaigi 2022-DAY{day} 本編参加者アンケート",
+    "@questionnaireTitle": {
+      "placeholders": {
+        "day": {
+          "type": "int"
+        }
+      }   
+    }
 }
