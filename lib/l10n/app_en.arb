@@ -2,6 +2,7 @@
     "home": "Home",
     "event": "Past Events",
     "tweet": "Tweet",
+    "questionnaire": "Questionnaire",
     "letsTweet": "Tweet #FlutterKaigi!",
     "checkLatestNews": "Check our official Twitter account for the latest news!",
     "proposalSubmissionStart": "Talk Submission Has Started!",
@@ -36,5 +37,13 @@
     "disclaimer": "Flutter and the related logo are trademarks of Google LLC. FlutterKaigi is not affiliated with or otherwise sponsored by Google LLC.",
     "trademark" : "The \"Flutter\" name and the Flutter logo <FlutterLogo/> (the \"Flutter Marks\") are trademarks owned by Google.",
     "other_event": "Other events",
-    "back": "Go back"
+    "back": "Go back",
+    "questionnaireTitle": "FlutterKaigi 2022-DAY{day} questionnaire for attendee",
+    "@questionnaireTitle": {
+      "placeholders": {
+        "day": {
+          "type": "int"
+        }
+      }   
+    }
 }
