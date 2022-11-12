@@ -4,6 +4,7 @@ import 'package:confwebsite2022/entity/timetable_entity.dart';
 import 'package:confwebsite2022/responsive_layout_builder.dart';
 import 'package:confwebsite2022/theme.dart';
 import 'package:confwebsite2022/widgets/divider_with_title.dart';
+import 'package:confwebsite2022/widgets/features.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:gap/gap.dart';
@@ -12,7 +13,7 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-const timeslotColor = Color(0x66F25D50);
+const timeSlotColor = Color(0x66F25D50);
 const talkColor = Color(0x666200EE);
 const sponsorColor = Color(0xffFFF275);
 
@@ -28,6 +29,7 @@ final sessionList = FutureProvider((_) async {
 });
 
 final _selectedDayIndex = StateProvider((_) => 0);
+final _selectedDay = Provider((ref) => ref.watch(_selectedDayIndex) + 1);
 
 class SessionList extends ConsumerWidget {
   const SessionList({super.key});
@@ -93,10 +95,13 @@ class _SessionList extends ConsumerWidget {
         const Gap(24),
         for (final session in division.values.elementAt(selectedDay)) ...[
           session.type.when(
-            timeslot: () => _Timeslot(item: session),
+            timeslot: () => _TimeSlot(item: session),
             talk: () => _Talk(item: session),
           ),
           const Gap(16),
+        ],
+        if (questionnaireLinkEnabled) ...[
+          const _Questionnaire(),
         ],
       ],
     );
@@ -203,10 +208,10 @@ String createSessionTimeRange(Timetable item) {
   return '${timeFormatter.format(startTime)} - ${timeFormatter.format(finishTime)}';
 }
 
-class _Timeslot extends StatelessWidget {
+class _TimeSlot extends StatelessWidget {
   final Timetable item;
 
-  const _Timeslot({
+  const _TimeSlot({
     Key? key,
     required this.item,
   }) : super(key: key);
@@ -218,7 +223,7 @@ class _Timeslot extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
         border: Border.symmetric(
-          horizontal: BorderSide(color: timeslotColor, width: 2),
+          horizontal: BorderSide(color: timeSlotColor, width: 2),
         ),
       ),
       width: double.infinity,
@@ -309,6 +314,60 @@ class _Talk extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _Questionnaire extends StatelessWidget {
+  const _Questionnaire();
+
+  @override
+  Widget build(BuildContext context) {
+    final appLocalizations = AppLocalizations.of(context)!;
+    return Center(
+      child: Column(
+        children: [
+          Text(
+            appLocalizations.questionnaire,
+            style: const TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          const Gap(12),
+          const _QuestionnaireLink(),
+        ],
+      ),
+    );
+  }
+}
+
+class _QuestionnaireLink extends ConsumerWidget {
+  const _QuestionnaireLink();
+
+  static const _links = [
+    'https://docs.google.com/forms/d/e/1FAIpQLSfeNsyunlRhNt0bd3XBcc3-kZ6hPFeLtg7tE09_AGuTxIMkTw/viewform',
+    'https://docs.google.com/forms/d/e/1FAIpQLScdNsZqr-_FN0YpZTM3zy_C8G6ATVwh_BUPwbuGBSk6AvUQWQ/viewform',
+    'https://docs.google.com/forms/d/e/1FAIpQLSdWFsJzl1TwxtM9az_w6c5Fxgs0osXwYNxKAkE1HKOndFzU4g/viewform',
+  ];
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final appLocalizations = AppLocalizations.of(context)!;
+
+    final dayIndex = ref.watch(_selectedDayIndex);
+    assert(dayIndex < _links.length);
+
+    final day = ref.watch(_selectedDay);
+    return TextButton(
+      onPressed: () async {
+        await launch(
+          _links[dayIndex],
+          webOnlyWindowName: '_blank',
+        );
+      },
+      child: Text(appLocalizations.questionnaireTitle(day)),
     );
   }
 }

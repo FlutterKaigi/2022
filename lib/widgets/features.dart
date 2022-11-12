@@ -18,3 +18,6 @@ const showSponsorLogo = true;
 
 /// 受付開始
 const startApply = true;
+
+/// アンケートリンク
+const questionnaireLinkEnabled = false;
