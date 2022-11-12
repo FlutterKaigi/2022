@@ -12,7 +12,7 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-const timeslotColor = Color(0x66F25D50);
+const timeSlotColor = Color(0x66F25D50);
 const talkColor = Color(0x666200EE);
 const sponsorColor = Color(0xffFFF275);
 
@@ -93,7 +93,7 @@ class _SessionList extends ConsumerWidget {
         const Gap(24),
         for (final session in division.values.elementAt(selectedDay)) ...[
           session.type.when(
-            timeslot: () => _Timeslot(item: session),
+            timeslot: () => _TimeSlot(item: session),
             talk: () => _Talk(item: session),
           ),
           const Gap(16),
@@ -203,10 +203,10 @@ String createSessionTimeRange(Timetable item) {
   return '${timeFormatter.format(startTime)} - ${timeFormatter.format(finishTime)}';
 }
 
-class _Timeslot extends StatelessWidget {
+class _TimeSlot extends StatelessWidget {
   final Timetable item;
 
-  const _Timeslot({
+  const _TimeSlot({
     Key? key,
     required this.item,
   }) : super(key: key);
@@ -218,7 +218,7 @@ class _Timeslot extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
         border: Border.symmetric(
-          horizontal: BorderSide(color: timeslotColor, width: 2),
+          horizontal: BorderSide(color: timeSlotColor, width: 2),
         ),
       ),
       width: double.infinity,
