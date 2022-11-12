@@ -14,7 +14,7 @@ const RESOURCES = {
 "index.html": "4cc54b63440da084f3ae2fb324bf94c5",
 "/": "4cc54b63440da084f3ae2fb324bf94c5",
 "manifest.json": "e21a8991a312b40b1643de826961b249",
-"main.dart.js": "0d4f8a541c98c6c9f7e838f993da39ce",
+"main.dart.js": "f2445d47b4151db689e1ed6af8b6d68b",
 "assets/AssetManifest.json": "f5e41cb6138bb6619e82f1bbd587e75a",
 "assets/flutterkaigi_ogp.png": "8f46c638505d766cfd56db952e5ae582",
 "assets/twitter_white.svg": "903d086cf532ce552a6241ab7aa158e4",
