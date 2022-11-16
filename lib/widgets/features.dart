@@ -20,4 +20,4 @@ const showSponsorLogo = true;
 const startApply = true;
 
 /// アンケートリンク
-const questionnaireLinkEnabled = false;
+const questionnaireLinkEnabled = true;
