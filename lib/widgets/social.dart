@@ -1,7 +1,7 @@
 import 'package:confwebsite2022/data/link.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/link.dart';
 
 class LinkModel {
   LinkModel(this.name, this.url);
@@ -17,16 +17,20 @@ class Social extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Widget> socialItem() {
       return kSocialLinks.map((link) {
-        return IconButton(
-          tooltip: link['url'],
-          icon: SvgPicture.asset(
-            '/${link['name']}.svg',
-            width: 60,
-          ),
-          onPressed: () async {
-            await launch(link['url']!);
+        return Link(
+          uri: Uri.parse(link['url']!),
+          target: LinkTarget.blank,
+          builder: (BuildContext ctx, FollowLink? openLink) {
+            return IconButton(
+              tooltip: link['url'],
+              icon: SvgPicture.asset(
+                '/${link['name']}.svg',
+                width: 60,
+              ),
+              onPressed: openLink,
+              mouseCursor: SystemMouseCursors.click,
+            );
           },
-          mouseCursor: SystemMouseCursors.click,
         );
       }).toList();
     }

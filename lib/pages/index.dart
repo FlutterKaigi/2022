@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:url_launcher/link.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 enum MenuItem { pastEvent, event, tweet, staff, timetable, sponsor }
@@ -248,18 +249,20 @@ class TopPage extends StatelessWidget {
         margin: const EdgeInsets.all(8),
         child: Tooltip(
           message: appLocalizations.letsTweet,
-          child: ElevatedButton.icon(
-            onPressed: () async {
-              await launch(
-                'https://twitter.com/intent/tweet?hashtags=FlutterKaigi',
-                webOnlyWindowName: '_blank',
+          child: Link(
+            uri: Uri.parse(
+                'https://twitter.com/intent/tweet?hashtags=FlutterKaigi'),
+            target: LinkTarget.blank,
+            builder: (BuildContext ctx, FollowLink? openLink) {
+              return ElevatedButton.icon(
+                onPressed: openLink,
+                style: ElevatedButton.styleFrom(
+                  shape: const StadiumBorder(),
+                ),
+                icon: SvgPicture.asset(Assets.twitterWhite, width: 20),
+                label: Text(appLocalizations.tweet),
               );
             },
-            style: ElevatedButton.styleFrom(
-              shape: const StadiumBorder(),
-            ),
-            icon: SvgPicture.asset(Assets.twitterWhite, width: 20),
-            label: Text(appLocalizations.tweet),
           ),
         ),
       ),
@@ -306,50 +309,33 @@ class Body extends StatelessWidget {
               ),
             ),
             const Gap(32),
-            if (afterEventQuestionnaire)
-            ...[
+            if (afterEventQuestionnaire) ...[
               Text(appLocalizations.thanksToJoined),
               const Gap(16),
               CustomButton(
-                isShow: true,
-                colors: startSession ? const [Colors.green, Colors.teal] : null,
-                title: appLocalizations.afterEventQuestionnaireTitle,
-                message: appLocalizations.afterEventQuestionnaireMessage,
-                onPress: () async {
-                  await launch(
-                    'https://docs.google.com/forms/d/e/1FAIpQLSd1WuTiLee98ZQOFgODmteCzJ4MNq2tylICWFwydFb_RaLLFw/viewform?usp=sf_link',
-                    webOnlyWindowName: '_blank',
-                  );
-                },
-              ),
+                  isShow: true,
+                  colors:
+                      startSession ? const [Colors.green, Colors.teal] : null,
+                  title: appLocalizations.afterEventQuestionnaireTitle,
+                  message: appLocalizations.afterEventQuestionnaireMessage,
+                  url:
+                      'https://docs.google.com/forms/d/e/1FAIpQLSd1WuTiLee98ZQOFgODmteCzJ4MNq2tylICWFwydFb_RaLLFw/viewform?usp=sf_link'),
             ],
             CustomButton(
-              isShow: initialLaunched,
-              colors:
-                  initialLaunched ? const [Colors.blue, Colors.green] : null,
-              title: appLocalizations.checkLatestNews,
-              message: appLocalizations.tweet,
-              onPress: () async {
-                await launch(
-                  'https://twitter.com/FlutterKaigi',
-                  webOnlyWindowName: '_blank',
-                );
-              },
-            ),
+                isShow: initialLaunched,
+                colors:
+                    initialLaunched ? const [Colors.blue, Colors.green] : null,
+                title: appLocalizations.checkLatestNews,
+                message: appLocalizations.tweet,
+                url: 'https://twitter.com/FlutterKaigi'),
             const Gap(16),
             CustomButton(
-              isShow: startApply,
-              colors: startApply ? const [Colors.red, Colors.orange] : null,
-              title: appLocalizations.applyMainEvent,
-              message: appLocalizations.openMainEventPage,
-              onPress: () async {
-                await launch(
-                  // 2022
-                  'https://connpass.com/event/262916/',
-                  webOnlyWindowName: '_blank',
-                );
-              },
-            ),
+                isShow: startApply,
+                colors: startApply ? const [Colors.red, Colors.orange] : null,
+                title: appLocalizations.applyMainEvent,
+                message: appLocalizations.openMainEventPage,
+                // 2022
+                url: 'https://connpass.com/event/262916/'),
             const Gap(16),
             CustomButton(
               isShow: startApply,
@@ -357,13 +343,8 @@ class Body extends StatelessWidget {
                   startApply ? const [Colors.teal, Colors.lightGreen] : null,
               title: appLocalizations.applyHandsonEvent,
               message: appLocalizations.openHandsonEventPage,
-              onPress: () async {
-                await launch(
-                  // 2022
-                  'https://connpass.com/event/263057/',
-                  webOnlyWindowName: '_blank',
-                );
-              },
+              // 2022
+              url: 'https://connpass.com/event/263057/',
             ),
             const Gap(16),
             Row(
@@ -377,14 +358,9 @@ class Body extends StatelessWidget {
                   message: startSession
                       ? appLocalizations.submitProposal
                       : appLocalizations.waitFor,
-                  onPress: startSession
-                      ? () async {
-                          await launch(
-                            'https://fortee.jp/flutterkaigi-2022/speaker/proposal/cfp',
-                            webOnlyWindowName: '_blank',
-                          );
-                        }
-                      : null,
+                  url: startSession
+                      ? 'https://fortee.jp/flutterkaigi-2022/speaker/proposal/cfp'
+                      : '',
                 ),
                 CustomButton(
                   isShow: initialLaunched || announceSponsor,
@@ -395,16 +371,11 @@ class Body extends StatelessWidget {
                   message: announceSponsor
                       ? appLocalizations.becomeSponsor
                       : appLocalizations.waitFor,
-                  onPress: announceSponsor
-                      ? () async {
-                          await launch(
-                            startSponsor
-                                ? 'https://fortee.jp/flutterkaigi-2022/sponsor/form'
-                                : 'https://docs.google.com/presentation/d/1HEwDIi6rxzKUnZmu7EKkwR04bvTQnSjWjpw3ldunczM/edit?usp=sharing',
-                            webOnlyWindowName: '_blank',
-                          );
-                        }
-                      : null,
+                  url: announceSponsor
+                      ? (startSponsor
+                          ? 'https://fortee.jp/flutterkaigi-2022/sponsor/form'
+                          : 'https://docs.google.com/presentation/d/1HEwDIi6rxzKUnZmu7EKkwR04bvTQnSjWjpw3ldunczM/edit?usp=sharing')
+                      : '',
                 ),
               ],
             ),
