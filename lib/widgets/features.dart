@@ -19,5 +19,8 @@ const showSponsorLogo = true;
 /// 受付開始
 const startApply = true;
 
-/// アンケートリンク
+/// 日毎のアンケートリンク
 const questionnaireLinkEnabled = true;
+
+/// 全体アンケートリンク
+const afterEventQuestionnaire = false;

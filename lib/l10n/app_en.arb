@@ -45,5 +45,8 @@
           "type": "int"
         }
       }   
-    }
+    },
+    "thanksToJoined": "FlutterKaigi 2022 is over. Thank you so much for joining!",
+    "afterEventQuestionnaireTitle": "Answer the questionnaire about whole of FlutterKaigi 2022",
+    "afterEventQuestionnaireMessage": "We are waiting for your answer!"
 }
