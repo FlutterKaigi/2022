@@ -45,5 +45,8 @@
           "type": "int"
         }
       }   
-    }
+    },
+    "thanksToJoined": "FlutterKaigi 2022は終了しました。沢山の方にご参加いただき、誠にありがとうございます。",
+    "afterEventQuestionnaireTitle": "FlutterKaigi 2022 全体アンケートに回答する",
+    "afterEventQuestionnaireMessage": "ご回答お待ちしています"
 }

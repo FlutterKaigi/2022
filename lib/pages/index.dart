@@ -306,6 +306,23 @@ class Body extends StatelessWidget {
               ),
             ),
             const Gap(32),
+            if (afterEventQuestionnaire)
+            ...[
+              Text(appLocalizations.thanksToJoined),
+              const Gap(16),
+              CustomButton(
+                isShow: true,
+                colors: startSession ? const [Colors.green, Colors.teal] : null,
+                title: appLocalizations.afterEventQuestionnaireTitle,
+                message: appLocalizations.afterEventQuestionnaireMessage,
+                onPress: () async {
+                  await launch(
+                    'https://docs.google.com/forms/d/e/1FAIpQLSd1WuTiLee98ZQOFgODmteCzJ4MNq2tylICWFwydFb_RaLLFw/viewform?usp=sf_link',
+                    webOnlyWindowName: '_blank',
+                  );
+                },
+              ),
+            ],
             CustomButton(
               isShow: initialLaunched,
               colors:
