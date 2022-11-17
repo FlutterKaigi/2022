@@ -6,7 +6,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:styled_text/styled_text.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/link.dart';
 
 class Footer extends StatelessWidget {
   const Footer({super.key, required this.layout});
@@ -39,7 +39,7 @@ class Footer extends StatelessWidget {
         _FooterButton(
           message: item['name']!,
           text: item['name'],
-          onPressed: () => launch(item['url']!),
+          anchorLink: item['url']!,
         ),
       _FooterButton(
         message: appLocalizations.licenses,
@@ -53,9 +53,7 @@ class Footer extends StatelessWidget {
         text: link['title'],
         message: link['url'],
         icon: link['name'],
-        onPressed: () async {
-          await launch(link['url']!);
-        },
+        anchorLink: link['url']!,
       );
     }).toList();
 
@@ -63,9 +61,7 @@ class Footer extends StatelessWidget {
       return _FooterButton(
         message: link['url'],
         text: link['name'],
-        onPressed: () async {
-          await launch(link['url']!);
-        },
+        anchorLink: link['url']!,
       );
     }).toList();
 
@@ -293,12 +289,14 @@ class _FooterButton extends StatelessWidget {
     required this.message,
     this.text,
     this.icon,
-    required this.onPressed,
+    this.anchorLink,
+    this.onPressed,
   }) : super(key: key);
 
   final String message;
   final String? text;
   final String? icon;
+  final String? anchorLink;
   final VoidCallback? onPressed;
 
   @override
@@ -307,19 +305,47 @@ class _FooterButton extends StatelessWidget {
       return Tooltip(
           message: message,
           child: Row(children: [
-            TextButton.icon(
-              onPressed: onPressed,
-              icon: SvgPicture.asset(
-                '/$icon.svg',
-                width: 24,
-              ),
-              label: Text(
-                text!,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: Colors.white,
-                ),
-              ),
+            Link(
+              uri: Uri.parse(anchorLink!),
+              target: LinkTarget.blank,
+              builder: (BuildContext ctx, FollowLink? openLink) {
+                return TextButton.icon(
+                  onPressed: openLink,
+                  icon: SvgPicture.asset(
+                    '/$icon.svg',
+                    width: 24,
+                  ),
+                  label: Text(
+                    text!,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                );
+              },
+            ),
+          ]));
+    }
+    if (anchorLink != null) {
+      return Tooltip(
+          message: message,
+          child: Row(children: [
+            Link(
+              uri: Uri.parse(anchorLink!),
+              target: LinkTarget.blank,
+              builder: (BuildContext ctx, FollowLink? openLink) {
+                return TextButton(
+                  onPressed: openLink,
+                  child: Text(
+                    text!,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                );
+              },
             ),
           ]));
     }

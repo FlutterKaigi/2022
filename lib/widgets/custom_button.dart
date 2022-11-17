@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/link.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton(
@@ -7,12 +8,14 @@ class CustomButton extends StatelessWidget {
       required this.colors,
       required this.title,
       required this.message,
+      required this.url,
       this.onPress});
 
   final bool isShow;
   final List<MaterialColor>? colors;
   final String title;
   final String message;
+  final String url;
   final Function()? onPress;
 
   @override
@@ -28,21 +31,27 @@ class CustomButton extends StatelessWidget {
             margin: const EdgeInsets.all(8),
             child: Tooltip(
               message: message,
-              child: ElevatedButton(
-                onPressed: onPress,
-                style: ElevatedButton.styleFrom(
-                  shape: const StadiumBorder(),
-                  padding: const EdgeInsets.all(28),
-                  backgroundColor: Colors.orange,
-                  foregroundColor: Colors.black87,
-                ),
-                child: Text(
-                  title,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                  ),
-                ),
+              child: Link(
+                uri: Uri.parse(url),
+                target: LinkTarget.blank,
+                builder: (BuildContext ctx, FollowLink? openLink) {
+                  return ElevatedButton(
+                    onPressed: onPress ?? openLink,
+                    style: ElevatedButton.styleFrom(
+                      shape: const StadiumBorder(),
+                      padding: const EdgeInsets.all(28),
+                      backgroundColor: Colors.orange,
+                      foregroundColor: Colors.black87,
+                    ),
+                    child: Text(
+                      title,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
+                    ),
+                  );
+                },
               ),
             ),
           ),
@@ -62,19 +71,25 @@ class CustomButton extends StatelessWidget {
           ),
           child: Tooltip(
             message: message,
-            child: TextButton(
-              onPressed: onPress,
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: Text(
-                  title,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
+            child: Link(
+              uri: Uri.parse(url),
+              target: LinkTarget.blank,
+              builder: (BuildContext ctx, FollowLink? openLink) {
+                return TextButton(
+                  onPressed: onPress ?? openLink,
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Text(
+                      title,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
+                    ),
                   ),
-                ),
-              ),
+                );
+              },
             ),
           ),
         ),
