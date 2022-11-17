@@ -40950,29 +40950,30 @@ $S:14}
 A.Hc.prototype={
 F(a){return new A.pH(new A.a0x(this),null)}}
 A.a0x.prototype={
-$3(a,b,c){var s,r,q,p,o,n,m,l,k,j,i,h,g,f,e=null,d=A.e2(a,B.bV,t.wr)
-d.toString
+$3(a,b,c){var s,r,q,p,o,n,m=null,l=A.e2(a,B.bV,t.wr)
+l.toString
 s=b===B.hE?0.6:1
-r=A.q4("assets/flutterkaigi_logo.svg",e,320*s)
-q=A.hI(A.bt("FlutterKaigi",e,e,e,B.a3V.MF(s),e,e),e,e)
-p=A.hI(A.bt("@ONLINE / November 16-18, 2022",e,e,e,B.a3W.MF(s),e,e),e,e)
-o=d.gN7()
-n=d.gxq()
-m=d.gMH()
-l=d.gQ0()
-k=d.gMG()
-j=d.gQ_()
-i=d.gFq(d)
-h=d.gEN()
-g=d.gpf()
-d=d.gEN()
-f=t.p
-d=A.a([r,q,new A.hO(32*s,e),p,B.e2,new A.mr(!1,e,o,n,new A.a0u(),e),B.cw,new A.mr(!0,B.Oz,m,l,new A.a0v(),e),B.cw,new A.mr(!0,B.ML,k,j,new A.a0w(),e),B.cw,A.f3(A.a([new A.mr(!1,e,i,h,e,e),new A.mr(!1,e,g,d,e,e)],f),B.B,B.ce,B.A),B.cw,B.a0Q,B.e2],f)
-B.c.L(d,A.a([B.a0d,B.e2],f))
-B.c.L(d,A.a([B.a0R,B.e2],f))
-d.push(B.a0X)
-d.push(new A.L3(b,e))
-return A.azt(A.cu(d,B.B,B.C,B.A),B.iQ)},
+r=t.p
+q=A.a([A.q4("assets/flutterkaigi_logo.svg",m,320*s),A.hI(A.bt("FlutterKaigi",m,m,m,B.a3V.MF(s),m,m),m,m),new A.hO(32*s,m),A.hI(A.bt("@ONLINE / November 16-18, 2022",m,m,m,B.a3W.MF(s),m,m),m,m),B.e2],r)
+q.push(new A.mr(!1,m,l.gN7(),l.gxq(),new A.a0u(),m))
+q.push(B.cw)
+q.push(new A.mr(!0,B.Oz,l.gMH(),l.gQ0(),new A.a0v(),m))
+q.push(B.cw)
+q.push(new A.mr(!0,B.ML,l.gMG(),l.gQ_(),new A.a0w(),m))
+q.push(B.cw)
+p=l.gFq(l)
+o=l.gEN()
+n=l.gpf()
+l=l.gEN()
+q.push(A.f3(A.a([new A.mr(!1,m,p,o,m,m),new A.mr(!1,m,n,l,m,m)],r),B.B,B.ce,B.A))
+q.push(B.cw)
+q.push(B.a0Q)
+q.push(B.e2)
+B.c.L(q,A.a([B.a0d,B.e2],r))
+B.c.L(q,A.a([B.a0R,B.e2],r))
+q.push(B.a0X)
+q.push(new A.L3(b,m))
+return A.azt(A.cu(q,B.B,B.C,B.A),B.iQ)},
 $C:"$3",
 $R:3,
 $S:199}
