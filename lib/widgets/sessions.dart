@@ -28,7 +28,18 @@ final sessionList = FutureProvider((_) async {
   return Future.value(const TimetableEntity().timetable);
 });
 
-final _selectedDayIndex = StateProvider((_) => 0);
+
+final day2 = DateTime(2022, 11, 17);
+final day3 = DateTime(2022, 11, 18);
+final _selectedDayIndex = StateProvider((_) {
+  final now = DateTime.now();
+  if (now.isAfter(day2)) {
+    return 1;
+  } else if (now.isAfter(day3)) {
+    return 2;
+  }
+  return 0;
+});
 final _selectedDay = Provider((ref) => ref.watch(_selectedDayIndex) + 1);
 
 class SessionList extends ConsumerWidget {
