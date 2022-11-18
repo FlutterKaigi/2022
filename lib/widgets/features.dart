@@ -17,10 +17,10 @@ const showSchedule = true;
 const showSponsorLogo = true;
 
 /// 受付開始
-const startApply = true;
+const startApply = false;
 
 /// 日毎のアンケートリンク
 const questionnaireLinkEnabled = true;
 
 /// 全体アンケートリンク
-const afterEventQuestionnaire = false;
+const afterEventQuestionnaire = true;
