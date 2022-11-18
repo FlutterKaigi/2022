@@ -41170,8 +41170,8 @@ $1(a){return a.e.a==="Live"},
 $S:246}
 A.aro.prototype={
 $1(a){var s=Date.now()
-if(s>$.aFo().a)return 1
-else if(s>$.aFp().a)return 2
+if(s>$.aFp().a)return 2
+else if(s>$.aFo().a)return 1
 return 0},
 $S:251}
 A.arp.prototype={
