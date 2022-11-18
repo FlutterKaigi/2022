@@ -33,10 +33,10 @@ final day2 = DateTime(2022, 11, 17);
 final day3 = DateTime(2022, 11, 18);
 final _selectedDayIndex = StateProvider((_) {
   final now = DateTime.now();
-  if (now.isAfter(day2)) {
-    return 1;
-  } else if (now.isAfter(day3)) {
+  if (now.isAfter(day3)) {
     return 2;
+  } else if (now.isAfter(day2)) {
+    return 1;
   }
   return 0;
 });
