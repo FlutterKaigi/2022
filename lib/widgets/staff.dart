@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:transparent_image/transparent_image.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/link.dart';
 
 class StaffSection extends StatelessWidget {
   const StaffSection({super.key});
@@ -65,29 +65,31 @@ class StaffItem extends StatelessWidget {
         ? NetworkImage(photo)
         : const Svg(Assets.flutterkaigiLogo)) as ImageProvider;
 
-    return InkWell(
-      onTap: () async {
-        if (await canLaunch(url)) {
-          await launch(url);
-        }
-      },
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SizedBox(
-            height: 64,
-            width: 64,
-            child: ClipOval(
-              child: FadeInImage(
-                fit: BoxFit.cover,
-                image: image,
-                placeholder: MemoryImage(kTransparentImage),
+    return Link(
+      uri: Uri.parse(url),
+      target: LinkTarget.blank,
+      builder: (BuildContext ctx, FollowLink? openLink) {
+        return InkWell(
+          onTap: openLink,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 64,
+                width: 64,
+                child: ClipOval(
+                  child: FadeInImage(
+                    fit: BoxFit.cover,
+                    image: image,
+                    placeholder: MemoryImage(kTransparentImage),
+                  ),
+                ),
               ),
-            ),
+              FittedBox(child: Text(name)),
+            ],
           ),
-          FittedBox(child: Text(name)),
-        ],
-      ),
+        );
+      },
     );
   }
 

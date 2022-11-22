@@ -3,7 +3,7 @@ import 'package:confwebsite2022/widgets/divider_with_title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/link.dart';
 
 class SponsorSection extends StatelessWidget {
   const SponsorSection({super.key});
@@ -97,23 +97,25 @@ class SponsorItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () async {
-        if (await canLaunch(url)) {
-          await launch(url);
-        }
-      },
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: SizedBox(
-          height: 120,
-          width: 120,
-          child: SvgPicture.asset(
-            logo,
-            semanticsLabel: name,
+    return Link(
+      uri: Uri.parse(url),
+      target: LinkTarget.blank,
+      builder: (BuildContext ctx, FollowLink? openLink) {
+        return InkWell(
+          onTap: openLink,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: SizedBox(
+              height: 120,
+              width: 120,
+              child: SvgPicture.asset(
+                logo,
+                semanticsLabel: name,
+              ),
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 
