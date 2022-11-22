@@ -11,6 +11,7 @@ import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+import 'package:url_launcher/link.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 const timeSlotColor = Color(0x66F25D50);
@@ -275,55 +276,61 @@ class _Talk extends StatelessWidget {
 
     return Material(
       color: item.isSponsored ? sponsorColor.withOpacity(0.4) : null,
-      child: InkWell(
-        onTap: () => launch(item.url, webOnlyWindowName: '_blank'),
-        child: Container(
-          decoration: BoxDecoration(
-            border: Border.symmetric(
-              horizontal: BorderSide(
-                color: item.isSponsored ? sponsorColor : talkColor,
-                width: 2,
+      child: Link(
+        uri: Uri.parse(item.url),
+        target: LinkTarget.blank,
+        builder: (BuildContext ctx, FollowLink? openLink) {
+          return InkWell(
+            onTap: openLink,
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.symmetric(
+                  horizontal: BorderSide(
+                    color: item.isSponsored ? sponsorColor : talkColor,
+                    width: 2,
+                  ),
+                ),
+              ),
+              width: double.infinity,
+              child: Column(
+                children: <Widget>[
+                  const Gap(20),
+                  Text(
+                    item.title,
+                    style: const TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const Gap(4),
+                  if (item.speaker.twitter.isNotEmpty)
+                    Tooltip(
+                      message: 'Twitter: @${item.speaker.twitter}',
+                      child: GestureDetector(
+                        onTap: () => launch(
+                          'https://twitter.com/${item.speaker.twitter}',
+                          webOnlyWindowName: '_blank',
+                        ),
+                        child: speakerName,
+                      ),
+                    )
+                  else
+                    speakerName,
+                  const Gap(40),
+                  Text(
+                    sessionTimeRange,
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const Gap(20),
+                ],
               ),
             ),
-          ),
-          width: double.infinity,
-          child: Column(
-            children: <Widget>[
-              const Gap(20),
-              Text(
-                item.title,
-                style: const TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              const Gap(4),
-              if (item.speaker.twitter.isNotEmpty)
-                Tooltip(
-                  message: 'Twitter: @${item.speaker.twitter}',
-                  child: GestureDetector(
-                    onTap: () => launch(
-                      'https://twitter.com/${item.speaker.twitter}',
-                      webOnlyWindowName: '_blank',
-                    ),
-                    child: speakerName,
-                  ),
-                )
-              else
-                speakerName,
-              const Gap(40),
-              Text(
-                sessionTimeRange,
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const Gap(20),
-            ],
-          ),
-        ),
+          );
+        },
       ),
     );
   }
@@ -371,14 +378,15 @@ class _QuestionnaireLink extends ConsumerWidget {
     assert(dayIndex < _links.length);
 
     final day = ref.watch(_selectedDay);
-    return TextButton(
-      onPressed: () async {
-        await launch(
-          _links[dayIndex],
-          webOnlyWindowName: '_blank',
+    return Link(
+      uri: Uri.parse(_links[dayIndex]),
+      target: LinkTarget.blank,
+      builder: (BuildContext ctx, FollowLink? openLink) {
+        return TextButton(
+          onPressed: openLink,
+          child: Text(appLocalizations.questionnaireTitle(day)),
         );
       },
-      child: Text(appLocalizations.questionnaireTitle(day)),
     );
   }
 }
