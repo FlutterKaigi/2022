@@ -24,3 +24,6 @@ const questionnaireLinkEnabled = true;
 
 /// 全体アンケートリンク
 const afterEventQuestionnaire = true;
+
+/// アーカイヴ動画
+const showArchives = false;
