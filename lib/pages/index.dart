@@ -273,6 +273,12 @@ class TopPage extends StatelessWidget {
 class Body extends StatelessWidget {
   const Body({super.key});
 
+  static final List _links = [
+    'https://www.youtube.com/watch?v=gBfHYHvojvk',
+    'https://www.youtube.com/watch?v=xh2E5Tg2r3A',
+    'https://www.youtube.com/watch?v=CgLQyTUTZPU',
+  ];
+
   TextStyle get titleTextStyle => const TextStyle(fontSize: 64);
 
   TextStyle get subtitleTextStyle => const TextStyle(fontSize: 36);
@@ -309,17 +315,46 @@ class Body extends StatelessWidget {
               ),
             ),
             const Gap(32),
+            Text(appLocalizations.thanksToJoined),
+            const Gap(16),
             if (afterEventQuestionnaire) ...[
-              Text(appLocalizations.thanksToJoined),
-              const Gap(16),
               CustomButton(
                   isShow: true,
-                  colors:
-                      startSession ? const [Colors.green, Colors.teal] : null,
+                  colors: const [Colors.amber, Colors.orange],
                   title: appLocalizations.afterEventQuestionnaireTitle,
                   message: appLocalizations.afterEventQuestionnaireMessage,
                   url:
                       'https://docs.google.com/forms/d/e/1FAIpQLSd1WuTiLee98ZQOFgODmteCzJ4MNq2tylICWFwydFb_RaLLFw/viewform?usp=sf_link'),
+            ],
+            if (showArchives) ...[
+              Wrap(
+                alignment: WrapAlignment.center,
+                children: [
+                  ..._links
+                      .asMap()
+                      .entries
+                      .map(
+                        (link) => Padding(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 0,
+                            horizontal: 20,
+                          ),
+                          child: SizedBox(
+                            child: CustomButton(
+                                isShow: true,
+                                colors: const [Colors.green, Colors.teal],
+                                title:
+                                    appLocalizations.youTubeVideo(link.key + 1),
+                                message: appLocalizations
+                                    .checkYouTubeVideo(link.key + 1),
+                                url: link.value),
+                            width: 460,
+                          ),
+                        ),
+                      )
+                      .toList(),
+                ],
+              ),
             ],
             CustomButton(
                 isShow: initialLaunched,
