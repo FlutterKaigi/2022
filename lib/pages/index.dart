@@ -273,7 +273,7 @@ class TopPage extends StatelessWidget {
 class Body extends StatelessWidget {
   const Body({super.key});
 
-  static final List _links = [
+  static const _links = [
     'https://www.youtube.com/watch?v=gBfHYHvojvk',
     'https://www.youtube.com/watch?v=xh2E5Tg2r3A',
     'https://www.youtube.com/watch?v=CgLQyTUTZPU',
