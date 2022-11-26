@@ -292,6 +292,7 @@ class Body extends StatelessWidget {
     return ResponsiveLayoutBuilder(builder: (context, layout, width) {
       final appLocalizations = AppLocalizations.of(context)!;
       final sizeFactor = (layout == ResponsiveLayout.slim) ? 0.6 : 1.0;
+      final paddingFactor = (layout == ResponsiveLayout.slim) ? 20.0 : 160.0;
 
       return SingleChildScrollView(
         padding: const EdgeInsets.only(top: 16),
@@ -335,9 +336,9 @@ class Body extends StatelessWidget {
                       .entries
                       .map(
                         (link) => Padding(
-                          padding: const EdgeInsets.symmetric(
+                          padding: EdgeInsets.symmetric(
                             vertical: 0,
-                            horizontal: 20,
+                            horizontal: link.key == 0 ? paddingFactor : 20,
                           ),
                           child: SizedBox(
                             child: CustomButton(
