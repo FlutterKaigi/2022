@@ -38,7 +38,7 @@
     "trademark" : "The \"Flutter\" name and the Flutter logo <FlutterLogo/> (the \"Flutter Marks\") are trademarks owned by Google.",
     "other_event": "Other events",
     "back": "Go back",
-    "questionnaireTitle": "FlutterKaigi 2022-DAY{day} questionnaire for attendee",
+    "questionnaireTitle": "Day {day} questionnaire for attendee",
     "@questionnaireTitle": {
       "placeholders": {
         "day": {
@@ -46,7 +46,7 @@
         }
       }   
     },
-    "youTubeVideo": "DAY{day} YouTube",
+    "youTubeVideo": "Day {day} YouTube",
     "@youTubeVideo": {
       "placeholders": {
         "day": {
@@ -54,7 +54,7 @@
         }
       }   
     },
-    "checkYouTubeVideo": "Check DAY{day} YouTube",
+    "checkYouTubeVideo": "Check Day {day} YouTube",
     "@checkYouTubeVideo": {
       "placeholders": {
         "day": {
