@@ -20,10 +20,10 @@ const showSponsorLogo = true;
 const startApply = false;
 
 /// 日毎のアンケートリンク
-const questionnaireLinkEnabled = true;
+const questionnaireLinkEnabled = false;
 
 /// 全体アンケートリンク
-const afterEventQuestionnaire = true;
+const afterEventQuestionnaire = false;
 
 /// アーカイヴ動画
-const showArchives = false;
+const showArchives = true;
