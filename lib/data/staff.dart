@@ -132,8 +132,9 @@ final kStaffList = [
   },
   {
     'name': 'okaryo',
+    // 'photo': Assets.photo.okaryo.path,
     'photo':
-        'https://pbs.twimg.com/profile_images/1111846203975598080/_LGNmqKU_400x400.png',
+        'https://pbs.twimg.com/profile_images/1591957067035774977/tdJ83ft0_400x400.png',
     'url': 'https://twitter.com/okaryoX',
   },
 ];
