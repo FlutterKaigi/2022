@@ -1,3 +1,5 @@
+import 'package:confwebsite2022/gen/assets.gen.dart';
+
 final kStaffList = [
   {
     'name': 'yagitatsu',
@@ -132,8 +134,7 @@ final kStaffList = [
   },
   {
     'name': 'okaryo',
-    'photo':
-        'https://pbs.twimg.com/profile_images/1111846203975598080/_LGNmqKU_400x400.png',
+    'photo': Assets.photo.okaryo.path,
     'url': 'https://twitter.com/okaryoX',
   },
 ];

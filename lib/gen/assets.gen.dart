@@ -2,9 +2,6 @@
 /// *****************************************************
 ///  FlutterGen
 /// *****************************************************
-
-// ignore_for_file: directives_ordering
-
 import 'package:flutter/widgets.dart';
 
 class $AssetsPhotoGen {
@@ -13,6 +10,7 @@ class $AssetsPhotoGen {
   /// File path: assets/photo/katsummy.png
   AssetGenImage get katsummy =>
       const AssetGenImage('assets/photo/katsummy.png');
+  AssetGenImage get okaryo => const AssetGenImage('assets/photo/okaryo.png');
 }
 
 class $AssetsSponsorGen {
