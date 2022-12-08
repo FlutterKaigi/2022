@@ -16,7 +16,7 @@ const RESOURCES = {
 "service-worker.js": "8e80dc880b1e22a2e73ff409d4b1d33e",
 "index.html": "4cc54b63440da084f3ae2fb324bf94c5",
 "/": "4cc54b63440da084f3ae2fb324bf94c5",
-"main.dart.js": "8cf47f3ba9ee05d9eb0a71d68f459afb",
+"main.dart.js": "6ae11d2d55f18ec46c2d816c140e81cb",
 "assets/NOTICES": "eff1961a000da6e8a702d55e96b15ce4",
 "assets/flutterkaigi-navbar_dark_logo.svg": "cdc1a26f38557372e4d824e6e27ecdc3",
 "assets/packages/cupertino_icons/assets/CupertinoIcons.ttf": "6d342eb68f170c97609e9da345464e5e",
