@@ -122,7 +122,7 @@ final kStaffList = [
     'name': 'NuumA',
     'photo':
         'https://pbs.twimg.com/profile_images/1297474423310544897/iXJJY8z7_400x400.jpg',
-    'url': 'https://twitter.com/numatch_jx',
+    'url': 'https://twitter.com/Nuum_A',
   },
   {
     'name': 'Kazuhito Nakayama',
